@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Magazin demo B2B – AGC AI B2B Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #020617;
+      --accent: #0ea5e9;
+      --accent-soft: #0f172a;
+      --text: #e5e7eb;
+      --text-soft: #9ca3af;
+      --card-bg: #020617;
+      --radius-lg: 16px;
+      --border: #1f2937;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1d4ed8 0, #020617 55%);
+      color: var(--text);
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER */
+    header {
+      padding: 14px 18px;
+      background: #020617;
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .brand-title { font-weight: 700; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .brand-sub { font-size: 0.75rem; color: var(--text-soft); }
+    .b2b-user {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+    .b2b-user span { color: var(--accent); }
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: right;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    /* MAIN */
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 18px 48px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.8fr);
+      gap: 18px;
+    }
+
+    /* PANELS */
+    .panel {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 50px rgba(15,23,42,0.7);
+      font-size: 0.9rem;
+    }
+    .panel h1, .panel h2 {
+      margin-top: 0;
+      margin-bottom: 6px;
+      color: #e5e7eb;
+    }
+    .panel p { margin: 4px 0; color: var(--text-soft); }
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #0f172a;
+      color: var(--text);
+      margin-right: 4px;
+    }
+    .tag-green { background: #064e3b; color: #bbf7d0; }
+    .tag-yellow { background: #78350f; color: #facc15; }
+
+    /* SUMMARY */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .summary-item {
+      background: #020617;
+      border-radius: 10px;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .summary-label { color: var(--text-soft); }
+    .summary-value { font-weight: 600; }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 0.85rem;
+    }
+    th, td {
+      padding: 8px 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      text-align: left;
+      color: var(--text-soft);
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+    .stock-ok { color: #22c55e; font-size: 0.8rem; }
+    .stock-low { color: #f97316; font-size: 0.8rem; }
+    .btn-small {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #334155;
+      font-size: 0.75rem;
+      cursor: default;
+    }
+    .btn-primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #020617;
+      font-weight: 600;
+    }
+
+    /* FLOWS */
+    .flow-list {
+      padding-left: 18px;
+      margin: 4px 0;
+      color: var(--text-soft);
+    }
+    .flow-list li { margin-bottom: 2px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: minmax(0,1fr); }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-title"><a href="index.html">AGC AI B2B Portal Demo</a></div>
+      <div class="brand-sub">Magazin demo B2B cu manager AI</div>
+    </div>
+    <div class="b2b-user">
+      Conectat ca: <span>Client B2B Demo SRL</span>
+    </div>
+    <div class="header-right">
+      <div>Termen de plată: <strong>30 zile</strong></div>
+      <div>Plafon credit: <strong>5.000 €</strong> · Sold utilizat: <strong>2.100 €</strong></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="layout">
+    <!-- STÂNGA: cont & fluxuri AI -->
+    <aside class="panel">
+      <h1>Rezumat cont B2B</h1>
+      <p><span class="tag tag-green">Client B2B activ</span></p>
+      <p>
+        Ai acces la prețuri speciale, termene de plată și puncte de livrare salvate. Managerul AI monitorizează comenzile și stocurile
+        și îți propune reaprovizionări înainte să apară rupturi de stoc.
+      </p>
+
+      <div class="summary-grid">
+        <div class="summary-item">
+          <div class="summary-label">Comenzi în așteptare</div>
+          <div class="summary-value">3 comenzi</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-label">Facturi restante</div>
+          <div class="summary-value">1 factură (1.250 €)</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-label">Ultima comandă</div>
+          <div class="summary-value">acum 7 zile</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-label">Puncte de livrare</div>
+          <div class="summary-value">3 locații</div>
+        </div>
+      </div>
+
+      <h2 style="margin-top:16px;">Ce face managerul AI pentru acest B2B</h2>
+      <ul class="flow-list">
+        <li>Analizează istoricul comenzilor și sugerează grile de reaprovizionare pentru fiecare punct de livrare.</li>
+        <li>Trimite emailuri automate către tine când anumite produse ajung sub stocul minim.</li>
+        <li>Generează un raport săptămânal cu top produse și stocuri critice.</li>
+        <li>Pregătește fișiere CSV pentru import rapid în sistemele de curierat / facturare.</li>
+      </ul>
+      <p style="margin-top:10px; font-size:0.8rem; color:var(--text-soft);">
+        Acesta este doar un demo vizual. Într-un proiect real, fluxurile sunt conectate direct la magazinul tău WooCommerce B2B.
+      </p>
+    </aside>
+
+    <!-- DREAPTA: produse -->
+    <section class="panel">
+      <h2>Produse disponibile pentru achiziție en-gros</h2>
+      <p>
+        Prețurile afișate sunt prețuri B2B, valabile pentru clienții logați. Discounturile se aplică în funcție de cantitatea comandată.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Produs</th>
+            <th>UM</th>
+            <th>Preț B2B</th>
+            <th>Discount volum</th>
+            <th>Disponibilitate</th>
+            <th>Cantitate minimă</th>
+            <th>Acțiuni</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Set cutii depozitare industriale</td>
+            <td>set 10</td>
+            <td>89,00 €</td>
+            <td>-5% peste 10 seturi</td>
+            <td><span class="stock-ok">Stoc suficient</span></td>
+            <td>3 seturi</td>
+            <td><span class="btn-small btn-primary">Adaugă în coș</span></td>
+          </tr>
+          <tr>
+            <td>Palet etichete autocolante</td>
+            <td>rolă</td>
+            <td>12,50 €</td>
+            <td>-8% peste 50 role</td>
+            <td><span class="stock-ok">Stoc suficient</span></td>
+            <td>20 role</td>
+            <td><span class="btn-small btn-primary">Adaugă în coș</span></td>
+          </tr>
+          <tr>
+            <td>Consumabile birou business pack</td>
+            <td>kit</td>
+            <td>129,00 €</td>
+            <td>-10% peste 15 kit-uri</td>
+            <td><span class="stock-low">Stoc limitat</span></td>
+            <td>5 kit-uri</td>
+            <td><span class="btn-small btn-primary">Adaugă în coș</span></td>
+          </tr>
+          <tr>
+            <td>Set markere industriale permanente</td>
+            <td>set 20</td>
+            <td>39,00 €</td>
+            <td>-3% peste 10 seturi</td>
+            <td><span class="stock-ok">Stoc suficient</span></td>
+            <td>5 seturi</td>
+            <td><span class="btn-small btn-primary">Adaugă în coș</span></td>
+          </tr>
+          <tr>
+            <td>Folie stretch pentru paletizare</td>
+            <td>rolă</td>
+            <td>6,20 €</td>
+            <td>-7% peste 40 role</td>
+            <td><span class="stock-ok">Stoc suficient</span></td>
+            <td>20 role</td>
+            <td><span class="btn-small btn-primary">Adaugă în coș</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 style="margin-top:18px;">Exemplu: flux de reaprovizionare AI</h2>
+      <p>Mai jos este un exemplu simplificat de „recomandare de reaprovizionare” generată de managerul AI pentru acest client:</p>
+      <div style="margin-top:8px; background:#020617; border-radius:10px; padding:10px 12px; border:1px dashed #1f2937; font-size:0.85rem; color:var(--text-soft);">
+        <p style="margin:0 0 4px;">
+          <span class="tag tag-yellow">Sugestie AI</span>
+        </p>
+        <p style="margin:0;">
+          Pentru punctul de livrare „Depozit principal”, se recomandă:
+          <br>- 15 seturi de „Set cutii depozitare industriale” (acoperă media de consum pe 6 săptămâni).
+          <br>- 80 role „Palet etichete autocolante” (include buffer pentru campaniile planificate).
+          <br>- 20 kit-uri „Consumabile birou business pack” (stoc curent redus).
+        </p>
+      </div>
+
+      <p style="margin-top:10px; font-size:0.8rem; color:var(--text-soft);">
+        Într-un magazin real, astfel de recomandări pot fi trimise automat pe email sau afișate în panoul de control B2B.
+      </p>
+    </section>
+  </div>
+</main>
+</body>
+</html>

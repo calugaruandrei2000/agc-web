@@ -2,142 +2,814 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8" />
-  <title>AGC AI – Manageri AI pentru magazine online și B2B</title>
+  <title>AGC AI – Advanced Generative Computing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="AGC AI (Advanced Generative Computing) construiește magazine WooCommerce și manageri AI care automatizează până la 80% din taskurile repetitive." />
+  <meta name="description" content="AGC AI construiește magazine WooCommerce, site-uri custom și manageri AI care automatizează taskurile repetitive pentru magazine online, B2B și bloguri." />
   <style>
-    body { margin:0; font-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:#111; background:#f7f7f9; }
-    header { padding:80px 20px; background:linear-gradient(135deg,#0b1220,#1e293b); color:#fff; text-align:center; }
-    header h1 { font-size:2.4rem; margin-bottom:10px; }
-    header p { max-width:720px; margin:0 auto 25px; line-height:1.6; }
-    .btn-primary { display:inline-block; padding:12px 24px; border-radius:999px; background:#38bdf8; color:#0b1220; text-decoration:none; font-weight:600; }
-    .btn-primary:hover { background:#0ea5e9; }
-    section { padding:60px 20px; max-width:960px; margin:0 auto; }
-    section h2 { font-size:1.9rem; margin-bottom:16px; color:#0b1120; }
-    section p { line-height:1.6; margin-bottom:12px; }
-    .grid-3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; margin-top:16px; }
-    .card { background:#fff; border-radius:12px; padding:20px; box-shadow:0 10px 25px rgba(15,23,42,0.06); }
-    .card h3 { margin-top:0; margin-bottom:8px; font-size:1.2rem; }
-    ul { padding-left:20px; }
-    footer { text-align:center; padding:30px 20px; font-size:0.9rem; color:#6b7280; }
-    form { display:grid; gap:12px; max-width:480px; margin-top:20px; }
-    input, textarea { padding:10px 12px; border-radius:8px; border:1px solid #cbd5f5; font:inherit; }
-    textarea { min-height:100px; resize:vertical; }
-    .btn-submit { background:#0f172a; color:#fff; border:none; padding:10px 20px; border-radius:999px; cursor:pointer; font-weight:600; }
-    .btn-submit:hover { background:#020617; }
-    @media (max-width:600px) {
-      header { padding:60px 16px; }
-      header h1 { font-size:2rem; }
+    :root {
+      --bg-dark: #020617;
+      --bg-hero: #020617;
+      --bg-main: #f4f4fb;
+      --accent: #38bdf8;
+      --accent-soft: #e0f2fe;
+      --accent-dark: #0ea5e9;
+      --text: #0f172a;
+      --text-soft: #6b7280;
+      --card-bg: #ffffff;
+      --radius-lg: 16px;
+      --shadow-soft: 0 18px 45px rgba(15,23,42,0.16);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg-main);
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAVBAR */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(2, 6, 23, 0.96);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    }
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #e5e7eb;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo {
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+    .nav-sub {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
+    }
+    .nav-links a {
+      color: #cbd5f5;
+      opacity: 0.9;
+    }
+    .nav-links a:hover {
+      color: #ffffff;
+      opacity: 1;
+    }
+    .nav-cta {
+      font-size: 0.85rem;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #020617;
+      font-weight: 600;
+    }
+    .nav-cta:hover { background: var(--accent-dark); }
+
+    /* HERO – fond închis */
+    .hero-wrap {
+      background: radial-gradient(circle at top, #1d4ed8 0, #020617 55%);
+      color: #e5e7eb;
+    }
+    header.hero {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 60px 18px 70px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 32px;
+    }
+    .hero-left h1 {
+      font-size: 2.6rem;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      color: #f9fafb;
+    }
+    .hero-left p {
+      color: #e5e7eb;
+      margin-bottom: 22px;
+      max-width: 540px;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(148,163,184,0.6);
+      color: #e5e7eb;
+    }
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 22px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #020617;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
+      color: #e5e7eb;
+      font-size: 0.9rem;
+    }
+    .btn-secondary:hover { border-color: #e5e7eb; }
+    .hero-note {
+      font-size: 0.8rem;
+      color: #cbd5f5;
+    }
+    .hero-right { align-self: center; }
+    .hero-panel {
+      background: rgba(15,23,42,0.95);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 25px 60px rgba(15,23,42,0.7);
+      border: 1px solid rgba(148,163,184,0.4);
+    }
+    .hero-panel h2 {
+      font-size: 1.1rem;
+      margin: 0 0 10px;
+      color: #e5e7eb;
+    }
+    .hero-panel p {
+      font-size: 0.85rem;
+      color: #cbd5f5;
+      margin: 0 0 14px;
+    }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 12px;
+      margin-top: 12px;
+      font-size: 0.8rem;
+    }
+    .hero-metric {
+      background: rgba(15,23,42,0.9);
+      border-radius: 12px;
+      padding: 10px;
+      border: 1px solid rgba(148,163,184,0.4);
+    }
+    .hero-metric span {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* MAIN */
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 30px 18px 50px;
+      background: var(--bg-main);
+    }
+    section { margin-top: 40px; }
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #0b1120;
+    }
+    section p.lead {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 680px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: 0 12px 35px rgba(15,23,42,0.06);
+      border: 1px solid rgba(148,163,184,0.15);
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+    .card p {
+      margin: 0 0 6px;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+    }
+    ul {
+      padding-left: 20px;
+      margin: 8px 0;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+    li { margin-bottom: 4px; }
+
+    /* PACKAGES */
+    .packages-note {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-top: 4px;
+    }
+    .price-tag {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .price-sub {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 10px;
+    }
+    .card-highlight {
+      border: 1px solid var(--accent);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+    .card-highlight::before {
+      content: "Recomandat";
+      position: absolute;
+      top: -12px;
+      right: 18px;
+      background: var(--accent);
+      color: #020617;
+      font-size: 0.7rem;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-weight: 600;
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.9);
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: #0b1120;
+    }
+
+    /* CONFIGURATOR */
+    #configurator .steps {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 22px;
+      margin-top: 20px;
+      align-items: flex-start;
+    }
+    #configurator .step-card {
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed rgba(148,163,184,0.5);
+    }
+    #configurator .step-card:last-child {
+      border-bottom: none;
+    }
+    #configurator h3 {
+      margin-top: 0;
+      font-size: 1rem;
+    }
+    #configurator label {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    #configurator input[type="radio"],
+    #configurator input[type="checkbox"] {
+      margin-right: 6px;
+    }
+    #configurator .summary-card {
+      background: #0b1120;
+      color: #e5e7eb;
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: 0 14px 40px rgba(15,23,42,0.6);
+      border: 1px solid rgba(148,163,184,0.4);
+      font-size: 0.9rem;
+    }
+    #configurator .summary-card h3 {
+      color: #e5e7eb;
+      margin-top: 0;
+    }
+    #configurator .summary-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-size: 0.88rem;
+    }
+    #configurator .summary-label { color: #9ca3af; }
+    #configurator .summary-value { color: #e5e7eb; }
+    #configurator .summary-price {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin: 6px 0 0;
+      color: var(--accent);
+    }
+    #configurator .summary-note {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    /* PROCESS */
+    #process ol {
+      padding-left: 20px;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+    #process li { margin-bottom: 6px; }
+
+    /* ABOUT */
+    #about {
+      background: #0b1220;
+      border-radius: 18px;
+      padding: 26px 20px;
+      color: #e5e7eb;
+      box-shadow: 0 18px 40px rgba(15,23,42,0.45);
+      border: 1px solid rgba(148,163,184,0.4);
+    }
+    #about h2 {
+      color: #e5e7eb;
+      margin-top: 0;
+    }
+    #about p {
+      color: #cbd5f5;
+      font-size: 0.95rem;
+    }
+
+    /* CONTACT */
+    #contact form {
+      display: grid;
+      gap: 10px;
+      max-width: 460px;
+      margin-top: 16px;
+    }
+    #contact input,
+    #contact textarea {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #cbd5f5;
+      font: inherit;
+    }
+    #contact textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+    .btn-submit {
+      background: #0f172a;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .btn-submit:hover { background: #020617; }
+    #contact .contact-note {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-top: 6px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 26px 18px 30px;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      header.hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 40px;
+      }
+      .hero-right { order: -1; }
+      #configurator .steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    @media (max-width: 780px) {
+      .nav-inner {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
 
-<header id="hero">
-  <h1>Manageri AI pentru magazine online și afaceri B2B</h1>
-  <p>
-    AGC AI (Advanced Generative Computing) construiește magazine WooCommerce și sisteme de automatizare cu
-    inteligență artificială care preiau până la 80% din taskurile repetitive: descrieri de produse, emailuri,
-    rapoarte și procese operaționale.
-  </p>
-  <a href="#contact" class="btn-primary">Programează o discuție gratuită</a>
-</header>
-
-<section id="services">
-  <h2>Ce face AGC AI</h2>
-  <p>Combinăm dezvoltarea de magazine online cu automatizări avansate bazate pe modele generative, astfel încât afacerea ta să lucreze mai mult pe pilot automat și mai puțin manual.</p>
-  <div class="grid-3">
-    <div class="card">
-      <h3>Magazine online WooCommerce</h3>
-      <p>Construim sau optimizăm magazine WooCommerce, de la structură și plăți până la fluxuri B2B complexe (conturi, prețuri speciale, puncte de livrare).</p>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <div class="nav-logo">AGC AI</div>
+      <div class="nav-sub">Advanced Generative Computing</div>
     </div>
-    <div class="card">
-      <h3>Manageri AI pentru conținut</h3>
-      <p>Implementăm agenți AI care generează și optimizează descrieri de produse, articole de blog și emailuri automate adaptate brandului tău.</p>
+    <div class="nav-links">
+      <a href="#services">Servicii</a>
+      <a href="#packages">Pachete</a>
+      <a href="#configurator">Configurator</a>
+      <a href="#demos">Demo-uri</a>
+      <a href="#process">Proces</a>
+      <a href="#contact">Contact</a>
     </div>
-    <div class="card">
-      <h3>Automatizări operaționale</h3>
-      <p>Creăm fluxuri care pregătesc date pentru AWB, facturi, rapoarte și monitorizează stocurile, astfel încât echipa ta să câștige timp în fiecare zi.</p>
-    </div>
+    <a href="#contact" class="nav-cta">Discuție gratuită</a>
   </div>
-</section>
+</nav>
 
-<section id="who">
-  <h2>Pentru cine este AGC AI</h2>
-  <ul>
-    <li>Magazine online B2C care vor să publice produse și campanii mai repede, cu efort minim.</li>
-    <li>Magazine B2B și en-gros cu conturi speciale, termene de plată și fluxuri personalizate.</li>
-    <li>Bloguri și afaceri bazate pe conținut care au nevoie de articole și pagini optimizate constant.</li>
-    <li>Afaceri de servicii care vor să automatizeze emailuri repetitive, oferte standard și rapoarte periodice.</li>
-  </ul>
-</section>
-
-<section id="packages">
-  <h2>Pachete AGC AI</h2>
-  <p>Pachetele pot fi adaptate în funcție de nevoile și dimensiunea afacerii tale.</p>
-  <div class="grid-3">
-    <div class="card">
-      <h3>Start eCommerce</h3>
-      <ul>
-        <li>Magazin WooCommerce sau site de conținut configurat.</li>
-        <li>Integrare plăți și livrare de bază.</li>
-        <li>2 fluxuri AI: descrieri produse/articole + emailuri automate simple.</li>
-      </ul>
+<div class="hero-wrap">
+  <header class="hero" id="hero">
+    <div class="hero-left">
+      <div class="hero-badges">
+        <span class="badge">
+          <span class="badge-dot"></span>
+          Manageri AI pentru eCommerce & B2B
+        </span>
+        <span class="badge">
+          Magazine · Bloguri · Automatizări
+        </span>
+      </div>
+      <h1>Construiește-ți magazinul și managerul AI în același loc.</h1>
+      <p>
+        AGC AI (Advanced Generative Computing) dezvoltă magazine WooCommerce, site-uri custom și fluxuri de
+        inteligență artificială care preiau taskurile repetitive: descrieri, emailuri, rapoarte și operațional.
+      </p>
+      <div class="hero-ctas">
+        <a href="#configurator" class="btn-primary">Calculează-ți un preț estimativ</a>
+        <a href="#demos" class="btn-secondary">Vezi demo-uri</a>
+      </div>
+      <div class="hero-note">
+        Prețuri transparente, pachete clare și automatizări gândite pe nevoile reale ale magazinelor B2C, B2B și ale blogurilor de conținut.
+      </div>
     </div>
-    <div class="card">
-      <h3>Growth eCommerce</h3>
-      <ul>
-        <li>Optimizare structură magazin.</li>
-        <li>Automatizări pentru conținut, follow-up și coș abandonat.</li>
-        <li>Raport lunar automat cu vânzări și produse de top.</li>
-      </ul>
+    <div class="hero-right">
+      <div class="hero-panel">
+        <h2>Manager AI pentru magazinul tău</h2>
+        <p>
+          Un set de fluxuri automatizate care lucrează în fundal: conținut, emailuri, rapoarte, stocuri. Tu te concentrezi pe decizii, nu pe taskuri repetitive.
+        </p>
+        <div class="hero-metrics">
+          <div class="hero-metric">
+            <span>20–40 h</span>
+            timp economisit lunar într-un magazin tipic, doar pe descrieri, emailuri și fișiere.
+          </div>
+          <div class="hero-metric">
+            <span>3–6 fluxuri</span>
+            implementate de obicei la start: conținut, email, rapoarte, operațional.
+          </div>
+          <div class="hero-metric">
+            <span>WooCommerce</span>
+            focus pe magazine B2C & B2B, plus bloguri de conținut.
+          </div>
+          <div class="hero-metric">
+            <span>AI-first</span>
+            proiectare direct cu gândul la ce poate prelua un manager AI.
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <h3>Pro B2B</h3>
-      <ul>
-        <li>Magazin WooCommerce B2B (conturi B2B, termene de plată, puncte de livrare).</li>
-        <li>Manager AI pentru descrieri, emailuri și rapoarte.</li>
-        <li>Fluxuri pentru stocuri, pregătire facturi/AWB și notificări interne.</li>
-      </ul>
+  </header>
+</div>
+
+<main>
+
+  <section id="services">
+    <h2>Ce face AGC AI</h2>
+    <p class="lead">
+      Combinăm dezvoltarea de site-uri cu automatizări avansate bazate pe AI generativ, astfel încât afacerea ta să lucreze mai mult pe pilot automat și mai puțin manual.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Magazine WooCommerce B2C & B2B</h3>
+        <p>Construim sau optimizăm magazine WooCommerce, de la structură și plăți până la fluxuri B2B complexe (conturi, prețuri speciale, puncte de livrare).</p>
+        <p>Arhitectura magazinului este gândită de la început pentru a integra ușor fluxurile AI.</p>
+      </div>
+      <div class="card">
+        <h3>Site-uri custom HTML/CSS/JS</h3>
+        <p>Realizăm site-uri de prezentare, landing page-uri și bloguri în HTML/CSS/JS, cu design curat și timp de încărcare foarte bun.</p>
+        <p>La nevoie, adăugăm backend PHP simplu pentru formulare și logări custom.</p>
+      </div>
+      <div class="card">
+        <h3>Manageri AI pentru conținut și operațional</h3>
+        <p>Implementăm fluxuri AI pentru conținut (produse, articole, pagini), emailuri și procese interne (stocuri, AWB, rapoarte).</p>
+        <p>Managerul AI devine un asistent digital care lucrează constant pentru tine.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="process">
-  <h2>Cum lucrăm la AGC AI</h2>
-  <ul>
-    <li><strong>Pasul 1 – Analiză gratuită</strong>: discutăm modelul tău de business și identificăm taskurile consumatoare de timp.</li>
-    <li><strong>Pasul 2 – Design manager AI</strong>: definim clar ce face managerul AI și cum se integrează în procesele tale.</li>
-    <li><strong>Pasul 3 – Implementare</strong>: construim sau optimizăm magazinul, configurăm fluxurile AI și le testăm împreună.</li>
-    <li><strong>Pasul 4 – Măsurare și optimizare</strong>: monitorizăm rezultatele și ajustăm fluxurile pe măsură ce business-ul crește.</li>
-  </ul>
-</section>
+  <section id="packages">
+    <h2>Pachete AGC AI</h2>
+    <p class="lead">
+      Pachetele de mai jos acoperă majoritatea situațiilor. Dacă ai nevoi foarte specifice, putem porni de la ele și adapta.
+    </p>
+    <p class="packages-note">
+      Setup = implementare inițială (site + fluxuri AI). Mentenanță = ajustări, noi fluxuri și monitorizare lunară.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Start eCommerce</h3>
+        <div class="price-tag">650 €</div>
+        <div class="price-sub">Setup inițial · de la 120 €/lună mentenanță</div>
+        <ul>
+          <li>Magazin WooCommerce B2C sau blog de conținut configurat.</li>
+          <li>Integrare plăți și livrare de bază.</li>
+          <li>Manager AI Basic pentru descrieri produse/articole și emailuri de bază.</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Discută pachetul Start</a>
+      </div>
+      <div class="card card-highlight">
+        <h3>Growth eCommerce</h3>
+        <div class="price-tag">1.200 €</div>
+        <div class="price-sub">Setup inițial · de la 260 €/lună mentenanță</div>
+        <ul>
+          <li>Magazin WooCommerce B2C optimizat (structură, UX, SEO on-page de bază).</li>
+          <li>Manager AI Plus: conținut, emailuri follow-up/coș abandonat, raport lunar.</li>
+          <li>Integrare cu unelte de email marketing și analytics.</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Discută pachetul Growth</a>
+      </div>
+      <div class="card">
+        <h3>Pro B2B</h3>
+        <div class="price-tag">2.000 €</div>
+        <div class="price-sub">Setup inițial · de la 450 €/lună mentenanță</div>
+        <ul>
+          <li>Magazin WooCommerce B2B (conturi B2B, termene de plată, puncte de livrare).</li>
+          <li>Manager AI Pro: conținut, emailuri, rapoarte, stocuri și pregătire fișiere AWB/facturi.</li>
+          <li>Fluxuri personalizate pe logica ta de business.</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Discută pachetul Pro B2B</a>
+      </div>
+    </div>
+  </section>
 
-<section id="about">
-  <h2>Despre AGC AI</h2>
-  <p>AGC AI (Advanced Generative Computing) este o agenție specializată în magazine WooCommerce și automatizări cu inteligență artificială. Combinăm experiența practică în e-commerce, B2B și dezvoltare web cu fluxuri AI moderne, ca să transformăm taskurile repetitive în procese automate, clare și scalabile.</p>
-  <p>Lucrăm în special cu afaceri care vor să reducă munca manuală, să publice mai rapid și să ia decizii pe baza datelor, nu a intuiției.</p>
-</section>
+  <section id="configurator">
+    <h2>Configură-ți pachetul AGC AI</h2>
+    <p class="lead">
+      Alege tipul proiectului, tehnologia și nivelul de automatizare AI. Vezi instant un preț estimativ de setup, gândit special ca să fie accesibil la început.
+    </p>
 
-<section id="contact">
-  <h2>Contact AGC AI</h2>
-  <p>Spune-ne câteva lucruri despre afacerea ta, iar AGC AI îți propune un manager AI și un plan de implementare adaptat.</p>
-  <!-- Formular simplu (nefuncțional încă, trimis prin mailto sau cu un back-end ulterior) -->
-  <form>
-    <input type="text" name="nume" placeholder="Nume" required />
-    <input type="email" name="email" placeholder="Email" required />
-    <input type="text" name="website" placeholder="Website / Magazin (opțional)" />
-    <textarea name="mesaj" placeholder="Descrie pe scurt afacerea și ce vrei să automatizezi"></textarea>
-    <button type="submit" class="btn-submit">Trimite mesaj</button>
-  </form>
-</section>
+    <div class="steps">
+      <div>
+        <div class="card step-card">
+          <h3>Pasul 1 – Tip de proiect</h3>
+          <p style="font-size:0.9rem; color:var(--text-soft); margin-bottom:6px;">Alege varianta care descrie cel mai bine ce ai nevoie:</p>
+          <label><input type="radio" name="cfg-project" value="blog" checked /> Blog / site de conținut</label><br />
+          <label><input type="radio" name="cfg-project" value="b2c" /> Magazin online B2C</label><br />
+          <label><input type="radio" name="cfg-project" value="b2b" /> Magazin online B2B</label><br />
+          <label><input type="radio" name="cfg-project" value="b2c_blog" /> B2C + blog</label><br />
+          <label><input type="radio" name="cfg-project" value="b2c_b2b" /> B2C + B2B</label><br />
+          <label><input type="radio" name="cfg-project" value="b2c_b2b_blog" /> B2C + B2B + blog</label>
+        </div>
+
+        <div class="card step-card">
+          <h3>Pasul 2 – Tehnologie & platformă</h3>
+          <p style="font-size:0.9rem; color:var(--text-soft); margin-bottom:6px;">Cum vrei să fie construit site-ul?</p>
+          <label><input type="radio" name="cfg-tech" value="wp" checked /> WordPress / WooCommerce</label><br />
+          <label><input type="radio" name="cfg-tech" value="static" /> Site custom HTML/CSS/JS (static)</label><br />
+          <label><input type="radio" name="cfg-tech" value="php" /> HTML/CSS/JS + backend PHP simplu</label>
+        </div>
+
+        <div class="card step-card">
+          <h3>Pasul 3 – Manager AI & automatizări</h3>
+          <p style="font-size:0.9rem; color:var(--text-soft); margin-bottom:6px;">Alege nivelul de automatizare AI:</p>
+          <label><input type="radio" name="cfg-ai" value="basic" checked /> AI Basic – descrieri + emailuri de bază</label><br />
+          <label><input type="radio" name="cfg-ai" value="plus" /> AI Plus – Basic + follow-up, coș abandonat, raport lunar</label><br />
+          <label><input type="radio" name="cfg-ai" value="pro" /> AI Pro – Plus + stocuri, AWB/facturi, raport săptămânal</label>
+        </div>
+      </div>
+
+      <div class="summary-card">
+        <h3>Rezumat configurație</h3>
+        <div class="summary-line">
+          <span class="summary-label">Tip proiect:</span>
+          <span class="summary-value" id="cfg-summary-project">Blog / site de conținut</span>
+        </div>
+        <div class="summary-line">
+          <span class="summary-label">Tehnologie:</span>
+          <span class="summary-value" id="cfg-summary-tech">WordPress / WooCommerce</span>
+        </div>
+        <div class="summary-line">
+          <span class="summary-label">Manager AI:</span>
+          <span class="summary-value" id="cfg-summary-ai">AI Basic</span>
+        </div>
+        <hr style="border:none; border-top:1px solid rgba(148,163,184,0.4); margin:10px 0;" />
+        <p style="margin:0; font-size:0.9rem;">Preț estimativ setup:</p>
+        <p class="summary-price"><span id="cfg-price">0</span> €</p>
+        <p class="summary-note">
+          Estimare orientativă pentru implementarea inițială (site + fluxuri AI alese). Prețul final se stabilește după discuția de proiect și poate fi ajustat în funcție de volum și complexitate.
+        </p>
+        <p class="summary-note" style="margin-top:10px;">
+          Vrei o ofertă exactă pentru configurația ta? Trimite configurația prin formularul de contact și menționează „Configurator AGC AI”.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="demos">
+    <h2>Proiecte demo AGC AI</h2>
+    <p class="lead">
+      Vezi câteva exemple de structuri de site pe care le poți avea cu AGC AI. Demo-urile sunt simplificate, dar arată clar direcția de design și organizare.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Magazin demo B2C</h3>
+        <p>Exemplu de magazin WooCommerce orientat pe B2C, cu pagină de categorie și pagină de produs.</p>
+        <a href="demo-b2c.html" class="btn-primary" style="font-size:0.85rem; padding:7px 14px;">Vezi demo B2C</a>
+      </div>
+      <div class="card">
+        <h3>Magazin demo B2B</h3>
+        <p>Exemplu de magazin B2B cu listă de produse pentru clienți înregistrați și informații despre termene de plată.</p>
+        <a href="demo-b2b.html" class="btn-primary" style="font-size:0.85rem; padding:7px 14px;">Vezi demo B2B</a>
+      </div>
+      <div class="card">
+        <h3>Blog demo</h3>
+        <p>Exemplu de blog cu articole și pagină de articol, optimizate cu ajutorul unui manager AI.</p>
+        <a href="demo-blog.html" class="btn-primary" style="font-size:0.85rem; padding:7px 14px;">Vezi demo blog</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <h2>Cum lucrăm la AGC AI</h2>
+    <p class="lead">
+      Procesul este clar și orientat pe rezultate: nu implementăm AI doar de dragul AI-ului, ci acolo unde aduce timp câștigat și claritate.
+    </p>
+    <ol>
+      <li><strong>Analiză gratuită</strong> – discutăm modelul tău de business și identificăm taskurile consumatoare de timp.</li>
+      <li><strong>Design manager AI</strong> – definim ce face managerul AI: ce generează, ce automatizează și cum se integrează în procesele tale.</li>
+      <li><strong>Implementare site + automatizări</strong> – construim sau optimizăm site-ul, configurăm fluxurile AI și le testăm împreună.</li>
+      <li><strong>Măsurare și optimizare</strong> – monitorizăm rezultatele, ajustăm fluxurile și adăugăm noi automatizări pe măsură ce business-ul crește.</li>
+    </ol>
+  </section>
+
+  <section id="about">
+    <h2>Despre AGC AI</h2>
+    <p>
+      AGC AI (Advanced Generative Computing) este o agenție specializată în magazine WooCommerce, site-uri custom și automatizări cu inteligență artificială. Scopul este simplu: mai puțin timp irosit în taskuri repetitive, mai mult timp pentru decizii și creștere.
+    </p>
+    <p>
+      Fiecare proiect este construit cu gândul la scalare: poți începe cu un site + AI Basic și, pe măsură ce volumul crește, managerul AI poate fi extins cu noi fluxuri fără să refaci totul de la zero.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact AGC AI</h2>
+    <p class="lead">
+      Spune-ne câteva lucruri despre afacerea ta și, dacă vrei, menționează ce ai selectat în configurator. Primești un plan clar și un interval de preț realist.
+    </p>
+    <form>
+      <input type="text" name="nume" placeholder="Nume" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="text" name="website" placeholder="Website / Magazin (opțional)" />
+      <textarea name="mesaj" placeholder="Descrie pe scurt afacerea și ce vrei să automatizezi (poți include și configurația aleasă)"></textarea>
+      <button type="submit" class="btn-submit">Trimite mesaj</button>
+    </form>
+    <p class="contact-note">
+      Preferi direct email? Poți scrie la: <strong>contact@agc-ai.ro</strong> (exemplu – înlocuiește cu adresa ta reală).
+    </p>
+  </section>
+
+</main>
 
 <footer>
   © <span id="year"></span> AGC AI – Advanced Generative Computing. Toate drepturile rezervate.
 </footer>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  // anul din footer
+  (function() {
+    var yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  })();
+
+  function updateConfigSummary(project, tech, ai) {
+    const projectMap = {
+      blog: "Blog / site de conținut",
+      b2c: "Magazin online B2C",
+      b2b: "Magazin online B2B",
+      b2c_blog: "Magazin B2C + blog",
+      b2c_b2b: "Magazin B2C + B2B",
+      b2c_b2b_blog: "Magazin B2C + B2B + blog"
+    };
+    const techMap = {
+      wp: "WordPress / WooCommerce",
+      static: "Site custom HTML/CSS/JS",
+      php: "HTML/CSS/JS + backend PHP simplu"
+    };
+    const aiMap = {
+      basic: "AI Basic – descrieri + emailuri de bază",
+      plus: "AI Plus – Basic + follow-up, coș abandonat, raport lunar",
+      pro: "AI Pro – Plus + stocuri, AWB/facturi, raport săptămânal"
+    };
+
+    const pEl = document.getElementById('cfg-summary-project');
+    const tEl = document.getElementById('cfg-summary-tech');
+    const aEl = document.getElementById('cfg-summary-ai');
+
+    if (pEl) pEl.textContent = projectMap[project] || "";
+    if (tEl) tEl.textContent = techMap[tech] || "";
+    if (aEl) aEl.textContent = aiMap[ai] || "";
+  }
+
+  function calcConfigPrice() {
+    const project = (document.querySelector('input[name="cfg-project"]:checked') || {}).value || "blog";
+    const tech = (document.querySelector('input[name="cfg-tech"]:checked') || {}).value || "wp";
+    const ai = (document.querySelector('input[name="cfg-ai"]:checked') || {}).value || "basic";
+
+    let base = 0;
+    switch (project) {
+      case "blog": base = 400; break;
+      case "b2c": base = 700; break;
+      case "b2b": base = 900; break;
+      case "b2c_blog": base = 900; break;
+      case "b2c_b2b": base = 1300; break;
+      case "b2c_b2b_blog": base = 1500; break;
+      default: base = 400;
+    }
+
+    let techExtra = 0;
+    if (tech === "static") techExtra = 150;
+    if (tech === "php") techExtra = 300;
+
+    let aiExtra = 0;
+    if (ai === "basic") aiExtra = 100;
+    if (ai === "plus") aiExtra = 250;
+    if (ai === "pro") aiExtra = 450;
+
+    let price = base + techExtra + aiExtra;
+
+    if (project === "b2c_b2b_blog" && tech === "php" && ai === "pro") {
+      price = Math.round(price * 0.9);
+    }
+    if (price < 400) price = 400;
+
+    const priceEl = document.getElementById('cfg-price');
+    if (priceEl) priceEl.textContent = price;
+
+    updateConfigSummary(project, tech, ai);
+  }
+
+  ['cfg-project','cfg-tech','cfg-ai'].forEach(function(group){
+    const inputs = document.querySelectorAll('input[name="'+group+'"]');
+    inputs.forEach(function(el){
+      el.addEventListener('change', calcConfigPrice);
+    });
+  });
+
+  calcConfigPrice();
 </script>
 
 </body>

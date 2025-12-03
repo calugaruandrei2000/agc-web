@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Magazin demo B2C – AGC AI Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f7f7fb;
+      --accent: #2563eb;
+      --accent-soft: #e0ecff;
+      --accent-dark: #1d4ed8;
+      --text: #0f172a;
+      --text-soft: #6b7280;
+      --card-bg: #ffffff;
+      --radius-lg: 16px;
+      --shadow-soft: 0 18px 40px rgba(15,23,42,0.14);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER */
+    header {
+      background: #0f172a;
+      color: #f9fafb;
+      padding: 14px 18px;
+    }
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .brand-title { font-weight: 700; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .brand-sub { font-size: 0.75rem; color: #9ca3af; }
+    nav {
+      display: flex;
+      gap: 16px;
+      font-size: 0.9rem;
+    }
+    nav a { color: #e5e7eb; opacity: 0.9; }
+    nav a:hover { opacity: 1; }
+    .cart {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+    .cart-badge {
+      background: #f97316;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+    }
+
+    /* MAIN */
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 18px 48px;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .hero-text h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+    }
+    .hero-text p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      max-width: 540px;
+    }
+    .hero-highlight {
+      font-size: 0.85rem;
+      color: #16a34a;
+      margin-bottom: 4px;
+    }
+    .hero-banner {
+      background: linear-gradient(135deg, #1d4ed8, #22c55e);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      color: #f9fafb;
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+    }
+    .hero-banner h2 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+    }
+    .hero-banner p { margin: 0; }
+    .hero-banner strong { font-size: 1.1rem; }
+
+    /* FILTER BAR */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      font-size: 0.9rem;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      color: #374151;
+      cursor: default;
+      font-size: 0.85rem;
+    }
+    .filter-pill.active {
+      background: var(--accent);
+      color: #f9fafb;
+    }
+    .sort {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      color: var(--text-soft);
+    }
+    .sort select {
+      font: inherit;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+    }
+
+    /* PRODUCTS */
+    .products-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.5fr);
+      gap: 20px;
+    }
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 12px 12px 14px;
+      box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+      border: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+    }
+    .product-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 999px; display: inline-block; margin-bottom: 6px; }
+    .badge-new { background: #dcfce7; color: #166534; }
+    .badge-sale { background: #fee2e2; color: #b91c1c; }
+    .product-name { font-weight: 600; margin-bottom: 4px; }
+    .product-desc { color: var(--text-soft); margin-bottom: 6px; min-height: 40px; }
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .price-main { font-weight: 700; }
+    .price-old {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      text-decoration: line-through;
+      margin-left: 6px;
+    }
+    .rating { font-size: 0.75rem; color: #f97316; }
+    .product-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-sm {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      font-size: 0.8rem;
+      background: #ffffff;
+      cursor: default;
+    }
+    .btn-buy {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* PRODUCT DETAIL */
+    .product-detail {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+    }
+    .product-detail h2 {
+      margin-top: 0;
+      margin-bottom: 4px;
+    }
+    .detail-price {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .detail-tags { margin-bottom: 8px; }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      margin-right: 4px;
+    }
+    .detail-section-title {
+      margin-top: 10px;
+      margin-bottom: 4px;
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+    .detail-list {
+      padding-left: 18px;
+      margin: 4px 0;
+      color: var(--text-soft);
+    }
+    .detail-list li { margin-bottom: 2px; }
+    .detail-cta {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn-main {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 0.85rem;
+      border: none;
+      cursor: default;
+    }
+    .detail-note { font-size: 0.8rem; color: var(--text-soft); }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .products-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+    @media (max-width: 700px) {
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-title"><a href="index.html">AGC AI Store Demo</a></div>
+      <div class="brand-sub">Magazin demo B2C generat de manager AI</div>
+    </div>
+    <nav>
+      <a href="index.html#hero">Acasă</a>
+      <a href="#catalog">Magazin</a>
+      <a href="#promo">Promoții</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="cart">
+      <span>Coș</span>
+      <span class="cart-badge">0</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-highlight">Colecție pentru birou – recomandată de managerul AI</div>
+      <h1>Magazin online B2C – demo AGC AI</h1>
+      <p>
+        Exemplu de categorie de produse pentru birou. Textele, descrierile și ideile de promoții pot fi generate și optimizate
+        de un manager AI, astfel încât tu să încarci produse rapid și constant.
+      </p>
+    </div>
+    <div class="hero-banner" id="promo">
+      <h2>Campanie „Birou eficient”</h2>
+      <p><strong>-20% la seturile complete pentru birou</strong> la comenzi peste 150 €.</p>
+      <p>Ideile de campanie, textele și emailurile de promovare pot fi propuse automat de managerul AI, în funcție de stoc și sezon.</p>
+    </div>
+  </section>
+
+  <section id="catalog">
+    <div class="filter-bar">
+      <div class="filters">
+        <span class="filter-pill active">Toate produsele</span>
+        <span class="filter-pill">Birou</span>
+        <span class="filter-pill">Tehnologie</span>
+        <span class="filter-pill">Accesorii</span>
+      </div>
+      <div class="sort">
+        Sortare:
+        <select>
+          <option>Relevanță</option>
+          <option>Preț crescător</option>
+          <option>Preț descrescător</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-list">
+        <div class="product-card">
+          <div class="product-badge badge-sale">Reducere 20%</div>
+          <div class="product-name">Set premium pentru birou</div>
+          <div class="product-desc">Set complet cu caiet premium, pix metalic, suport organizator și tavă documente – ideal pentru birou acasă.</div>
+          <div class="product-meta">
+            <div>
+              <span class="price-main">149,00 €</span>
+              <span class="price-old">189,00 €</span>
+            </div>
+            <div class="rating">★★★★★ (42)</div>
+          </div>
+          <div class="product-actions">
+            <span class="btn-sm">Detalii</span>
+            <span class="btn-sm btn-buy">Adaugă în coș</span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-badge badge-new">Nou</div>
+          <div class="product-name">Căști wireless compacte</div>
+          <div class="product-desc">Căști in-ear cu autonomie ridicată, izolare fonică și conectare instant la telefon sau laptop.</div>
+          <div class="product-meta">
+            <div>
+              <span class="price-main">79,00 €</span>
+            </div>
+            <div class="rating">★★★★☆ (128)</div>
+          </div>
+          <div class="product-actions">
+            <span class="btn-sm">Detalii</span>
+            <span class="btn-sm btn-buy">Adaugă în coș</span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-badge badge-new">Nou</div>
+          <div class="product-name">Lampă LED pentru birou</div>
+          <div class="product-desc">Lampă reglabilă cu lumină neutră, perfectă pentru lucru de lungă durată fără oboseală oculară.</div>
+          <div class="product-meta">
+            <div>
+              <span class="price-main">39,00 €</span>
+            </div>
+            <div class="rating">★★★★☆ (67)</div>
+          </div>
+          <div class="product-actions">
+            <span class="btn-sm">Detalii</span>
+            <span class="btn-sm btn-buy">Adaugă în coș</span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-name">Suport laptop ergonomic</div>
+          <div class="product-desc">Suport ajustabil din aluminiu pentru laptop, pentru o poziție corectă la birou.</div>
+          <div class="product-meta">
+            <div>
+              <span class="price-main">49,00 €</span>
+            </div>
+            <div class="rating">★★★★☆ (54)</div>
+          </div>
+          <div class="product-actions">
+            <span class="btn-sm">Detalii</span>
+            <span class="btn-sm btn-buy">Adaugă în coș</span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-badge badge-sale">Reducere</div>
+          <div class="product-name">Scaun de birou ergonomic</div>
+          <div class="product-desc">Scaun cu suport lombar, brațe reglabile și material respirabil, pentru confort zilnic.</div>
+          <div class="product-meta">
+            <div>
+              <span class="price-main">199,00 €</span>
+              <span class="price-old">229,00 €</span>
+            </div>
+            <div class="rating">★★★★☆ (89)</div>
+          </div>
+          <div class="product-actions">
+            <span class="btn-sm">Detalii</span>
+            <span class="btn-sm btn-buy">Adaugă în coș</span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-name">Organizator cabluri birou</div>
+          <div class="product-desc">Set de clipsuri pentru managementul cablurilor, pentru un birou ordonat.</div>
+          <div class="product-meta">
+            <div>
+              <span class="price-main">12,00 €</span>
+            </div>
+            <div class="rating">★★★☆☆ (23)</div>
+          </div>
+          <div class="product-actions">
+            <span class="btn-sm">Detalii</span>
+            <span class="btn-sm btn-buy">Adaugă în coș</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="product-detail">
+        <h2>Exemplu pagină de produs</h2>
+        <div class="detail-price">Set premium pentru birou – 149,00 €</div>
+        <div class="detail-tags">
+          <span class="tag">Birou</span>
+          <span class="tag">Colecție AI recomandată</span>
+        </div>
+        <div class="detail-section-title">Descriere generată de managerul AI:</div>
+        <p>
+          Setul premium pentru birou reunește toate elementele esențiale pentru un spațiu de lucru organizat și plăcut:
+          caiet cu hârtie groasă, pix metalic, suport organizator și tavă pentru documente. Ideal pentru profesioniști
+          care lucrează de acasă sau din birou.
+        </p>
+        <div class="detail-section-title">Beneficii cheie:</div>
+        <ul class="detail-list">
+          <li>Design coerent și profesional pentru birou.</li>
+          <li>Elemente atent alese pentru confort și productivitate.</li>
+          <li>Perfect pentru cadouri corporate sau onboarding.</li>
+        </ul>
+        <div class="detail-section-title">Cum te ajută managerul AI:</div>
+        <ul class="detail-list">
+          <li>Propune descrieri și beneficii pentru fiecare produs nou.</li>
+          <li>Generează texte diferite pentru magazin, newsletter și social media.</li>
+          <li>Poate crea automat bundle-uri și campanii în funcție de stoc și sezon.</li>
+        </ul>
+        <div class="detail-cta">
+          <button class="btn-main">Vrei un magazin similar?</button>
+          <span class="detail-note">Contactează AGC AI din pagina principală pentru un demo personalizat.</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+</body>
+</html>
