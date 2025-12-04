@@ -2,15 +2,14 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8" />
-  <title>AGC AI – Advanced Generative Computing</title>
+  <title>AGC Web – Site-uri & Magazine online pentru IMM-uri</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="AGC AI construiește magazine WooCommerce, site-uri custom și manageri AI accesibili, cu prețuri prietenoase la început și mentenanță clară pentru IMM-uri." />
+  <meta name="description" content="AGC Web dezvoltă site-uri de prezentare, bloguri și magazine online pentru afaceri mici și medii. Prețuri clare, configurator de buget și demo-uri. Mai târziu, vei putea adăuga și automatizări cu AI peste site-ul tău." />
   <style>
     :root {
       --bg-main: #f4f4fb;
       --bg-hero: #020617;
       --accent: #38bdf8;
-      --accent-soft: #e0f2fe;
       --accent-dark: #0ea5e9;
       --text: #0f172a;
       --text-soft: #6b7280;
@@ -100,7 +99,7 @@
       gap: 32px;
     }
     .hero-left h1 {
-      font-size: 2.6rem;
+      font-size: 2.4rem;
       line-height: 1.1;
       margin-bottom: 16px;
       color: #f9fafb;
@@ -175,26 +174,26 @@
       border: 1px solid rgba(148,163,184,0.4);
     }
     .hero-panel h2 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       margin: 0 0 10px;
       color: #e5e7eb;
     }
     .hero-panel p {
       font-size: 0.85rem;
       color: #cbd5f5;
-      margin: 0 0 14px;
+      margin: 0 0 10px;
     }
     .hero-metrics {
       display: grid;
       grid-template-columns: repeat(2,minmax(0,1fr));
-      gap: 12px;
-      margin-top: 12px;
+      gap: 10px;
+      margin-top: 10px;
       font-size: 0.8rem;
     }
     .hero-metric {
       background: rgba(15,23,42,0.9);
       border-radius: 12px;
-      padding: 10px;
+      padding: 9px;
       border: 1px solid rgba(148,163,184,0.4);
     }
     .hero-metric span {
@@ -253,12 +252,6 @@
     }
     li { margin-bottom: 4px; }
 
-    /* PACKAGES */
-    .packages-note {
-      font-size: 0.9rem;
-      color: var(--text-soft);
-      margin-top: 4px;
-    }
     .price-tag {
       font-size: 1.4rem;
       font-weight: 700;
@@ -275,7 +268,7 @@
       position: relative;
     }
     .card-highlight::before {
-      content: "Recomandat";
+      content: "Popular";
       position: absolute;
       top: -12px;
       right: 18px;
@@ -304,7 +297,7 @@
     /* CONFIGURATOR */
     #configurator .steps {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: 1.3fr 1fr;
       gap: 22px;
       margin-top: 20px;
       align-items: flex-start;
@@ -362,38 +355,24 @@
       margin-top: 4px;
     }
 
-    /* MAINTENANCE */
-    #maintenance .card h3 {
-      font-size: 1rem;
-    }
-    #maintenance .price-tag {
-      font-size: 1.2rem;
-    }
-
-    /* PROCESS */
-    #process ol {
-      padding-left: 20px;
-      color: var(--text-soft);
-      font-size: 0.95rem;
-    }
-    #process li { margin-bottom: 6px; }
-
-    /* ABOUT */
-    #about {
+    /* FUTURE AI */
+    #future-ai {
       background: #0b1220;
       border-radius: 18px;
-      padding: 26px 20px;
+      padding: 22px 20px;
       color: #e5e7eb;
-      box-shadow: 0 18px 40px rgba(15,23,42,0.45);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.35);
       border: 1px solid rgba(148,163,184,0.4);
     }
-    #about h2 {
+    #future-ai h2 {
       color: #e5e7eb;
       margin-top: 0;
+      font-size: 1.4rem;
     }
-    #about p {
+    #future-ai p {
       color: #cbd5f5;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
+      margin: 4px 0;
     }
 
     /* CONTACT */
@@ -439,7 +418,6 @@
       color: #6b7280;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 960px) {
       header.hero {
         grid-template-columns: minmax(0, 1fr);
@@ -464,19 +442,19 @@
 <nav class="nav">
   <div class="nav-inner">
     <div class="nav-left">
-      <div class="nav-logo">AGC AI</div>
-      <div class="nav-sub">Advanced Generative Computing</div>
+      <div class="nav-logo">AGC Web</div>
+      <div class="nav-sub">Site-uri & Magazine online</div>
     </div>
     <div class="nav-links">
       <a href="#services">Servicii</a>
       <a href="#packages">Pachete</a>
       <a href="#configurator">Configurator</a>
-      <a href="#maintenance">Mentenanță & AI</a>
       <a href="#demos">Demo-uri</a>
-      <a href="#process">Proces</a>
+      <a href="ghid.html">Ghid site / magazin</a>
+      <a href="#future-ai">AI (în curând)</a>
       <a href="#contact">Contact</a>
     </div>
-    <a href="#contact" class="nav-cta">Discuție gratuită</a>
+    <a href="#contact" class="nav-cta">Cere o discuție</a>
   </div>
 </nav>
 
@@ -486,47 +464,49 @@
       <div class="hero-badges">
         <span class="badge">
           <span class="badge-dot"></span>
-          Manageri AI pentru eCommerce & B2B
+          Site de prezentare · Blog · E‑commerce
         </span>
         <span class="badge">
-          Magazine · Bloguri · Automatizări
+          Potrivit pentru afaceri mici și medii din orice nișă
         </span>
       </div>
-      <h1>Construiește-ți magazinul și managerul AI cu prețuri de început.</h1>
+      <h1>Site-uri și magazine online clare, cu prețuri de început și spațiu să crești în timp.</h1>
       <p>
-        AGC AI dezvoltă magazine WooCommerce, site-uri custom și fluxuri de inteligență artificială accesibile, gândite pentru IMM-uri:
-        prețuri de start, pachete clare și mentenanță simplă.
+        AGC Web construiește site-uri de prezentare, bloguri și magazine online pentru IMM-uri:
+        de la pagini simple „cine suntem” până la e‑commerce mai avansat. Azi ne ocupăm de dezvoltare web clasică, iar pe viitor vei putea adăuga și automatizări cu AI peste ce ai deja.
       </p>
       <div class="hero-ctas">
-        <a href="#configurator" class="btn-primary">Calculează-ți un preț estimativ</a>
-        <a href="#demos" class="btn-secondary">Vezi demo-uri</a>
+        <a href="#configurator" class="btn-primary">Calculează un preț estimativ</a>
+        <a href="ghid.html" class="btn-secondary">Vezi ghidul pentru site/magazin</a>
       </div>
       <div class="hero-note">
-        Setup de la 250 € și pachete de mentenanță de la 40 €/lună – suficient cât să începi, fără să blochezi bugete mari.
+        Pentru majoritatea afacerilor mici, bugetele de start pentru un site simplu se încadrează în câteva sute de euro,
+        mult sub nivelul agențiilor mari, dar suficient pentru un proiect solid. [web:218][web:221]
       </div>
     </div>
     <div class="hero-right">
       <div class="hero-panel">
-        <h2>Manager AI pentru început</h2>
+        <h2>Ce poți construi aici, indiferent de nișă</h2>
         <p>
-          Poți începe doar cu site-ul, sau cu 2–3 fluxuri AI simple (descrieri, emailuri, raport lunar) și le extindem când vezi rezultate.
+          Site-ul tău poate fi vitrina principală (site de prezentare), un motor de conținut (blog) sau un canal direct de vânzare (magazin online).
+          Structura și tehnologia se adaptează la afacerea ta, nu invers. [web:196][web:220]
         </p>
         <div class="hero-metrics">
           <div class="hero-metric">
-            <span>250–800 €</span>
-            interval tipic pentru setup site + AI de bază.
+            <span>Site-uri</span>
+            Broșuri online pentru servicii, restaurante, clinici, consultanță și altele.
           </div>
           <div class="hero-metric">
-            <span>40–140 €/lună</span>
-            pachete de mentenanță pentru site și AI.
+            <span>Bloguri</span>
+            Secțiuni de articole pentru educarea clienților și vizibilitate în timp.
           </div>
           <div class="hero-metric">
-            <span>2–4 săptămâni</span>
-            timp obișnuit de implementare pentru un proiect standard.
+            <span>E‑commerce</span>
+            Magazine WooCommerce B2C/B2B cu plăți și livrare configurate.
           </div>
           <div class="hero-metric">
             <span>Scalabil</span>
-            poți porni fără AI și adăuga fluxuri mai târziu.
+            Poți începe simplu și adăuga funcționalități pe măsură ce crești.
           </div>
         </div>
       </div>
@@ -537,108 +517,101 @@
 <main>
 
   <section id="services">
-    <h2>Ce face AGC AI</h2>
+    <h2>Serviciile AGC Web</h2>
     <p class="lead">
-      Poți avea un site sau magazin simplu, dar solid, la care se pot adăuga treptat fluxuri de AI. Nu e obligatoriu să începi cu totul automatizat.
+      Serviciile acoperă combinațiile cele mai frecvente de care au nevoie afacerile: site de prezentare, blog și magazin online, cu opțiuni atât pentru B2C, cât și pentru B2B. [web:196][web:226]
     </p>
     <div class="grid-3">
       <div class="card">
-        <h3>Magazine WooCommerce B2C & B2B</h3>
-        <p>Construim magazine WooCommerce pentru B2C și B2B, cu structură clară și plăți/livrare configurate pentru piața ta.</p>
-        <p>Arhitectura este pregătită pentru AI, indiferent dacă îl activezi acum sau mai târziu.</p>
+        <h3>Site-uri de prezentare</h3>
+        <p>Site-uri tip „broșură digitală” pentru servicii, locații fizice sau branduri aflate la început.</p>
+        <p>Pagini esențiale (Acasă, Despre, Servicii, Contact) și formulare funcționale, gândite să explice clar „cine ești și ce oferi”.</p>
       </div>
       <div class="card">
-        <h3>Site-uri și bloguri simple</h3>
-        <p>Realizăm site-uri și bloguri în WordPress sau HTML/CSS/JS, perfecte ca bază pentru conținut generat de AI.</p>
-        <p>Important este să poți publica ușor și să crești structurat, în ritmul tău.</p>
+        <h3>Bloguri și pagini de conținut</h3>
+        <p>Bloguri sau secțiuni de articole integrate în site, utile pentru a răspunde la întrebările clienților și a construi autoritate.</p>
+        <p>Structuri de categorii simple și pagini ușor de actualizat, astfel încât să poți publica singur conținut nou. [web:196][web:217]</p>
       </div>
       <div class="card">
-        <h3>Fluxuri AI opționale</h3>
-        <p>Poți porni fără AI, sau cu un nivel Basic, și să adaugi ulterior emailuri, rapoarte și automatizări operaționale.</p>
-        <p>Astfel, bugetul rămâne controlat și vezi clar ce îți aduce fiecare flux AI.</p>
+        <h3>Magazine online B2C / B2B</h3>
+        <p>Magazine WooCommerce pentru produse fizice sau digitale, cu coș de cumpărături, plăți online și opțiuni de livrare.</p>
+        <p>De la e‑commerce simplu pentru câteva produse până la configurări de bază pentru B2B (conturi, prețuri speciale). [web:220][web:226]</p>
       </div>
     </div>
   </section>
 
   <section id="packages">
-    <h2>Pachete setup AGC AI</h2>
+    <h2>Pachete de start</h2>
     <p class="lead">
-      Pachetele de mai jos sunt pentru partea de setup (site / magazin). AI-ul și mentenanța sunt opționale și se pot adăuga separat.
-    </p>
-    <p class="packages-note">
-      Poți începe doar cu site-ul sau magazinul, apoi, când ești pregătit, adaugi AI Basic, Plus sau Pro și un pachet de mentenanță.
+      Pachetele de mai jos sunt repere de buget. Configuratorul îți arată o estimare adaptată la combinația ta de pagini și funcționalități, iar oferta finală se stabilește după o discuție scurtă. [web:215][web:224]
     </p>
     <div class="grid-3">
       <div class="card">
-        <h3>Start Blog / Site</h3>
-        <div class="price-tag">250 €</div>
-        <div class="price-sub">Setup inițial · mentenanță opțională</div>
+        <h3>Site de prezentare</h3>
+        <div class="price-tag">~250–350 €</div>
+        <div class="price-sub">3–5 pagini, fără e‑commerce</div>
         <ul>
-          <li>Blog sau site de prezentare simplu (WordPress sau HTML/CSS/JS).</li>
-          <li>Formular de contact și pagini esențiale.</li>
-          <li>Pregătit pentru a adăuga ulterior AI Basic pentru conținut.</li>
+          <li>Acasă, Despre, Servicii/Produse, Contact.</li>
+          <li>Formular de contact, hărți și elemente esențiale.</li>
+          <li>Potrivit pentru servicii locale, consultanță, profesii liberale.</li>
         </ul>
-        <a href="#contact" class="btn-outline">Discută pachetul Start Blog</a>
       </div>
       <div class="card card-highlight">
-        <h3>Start Magazin B2C</h3>
-        <div class="price-tag">350 €</div>
-        <div class="price-sub">Setup inițial · mentenanță opțională</div>
+        <h3>Magazin online simplu</h3>
+        <div class="price-tag">~400–650 €</div>
+        <div class="price-sub">WooCommerce B2C, 1 limbă, 1 țară</div>
         <ul>
-          <li>Magazin WooCommerce B2C cu plăți și livrare configurate.</li>
-          <li>Poți porni fără AI și adăuga AI Basic/Plus mai târziu.</li>
-          <li>Ideal pentru primele comenzi și testarea pieței.</li>
+          <li>Pagini: Acasă, Magazin, Coș, Finalizare, Cont, Contact.</li>
+          <li>Plăți și livrare configurează pentru contextul tău.</li>
+          <li>Potrivit pentru magazine mici și branduri la început. [web:220][web:224]</li>
         </ul>
-        <a href="#contact" class="btn-outline">Discută pachetul Start B2C</a>
       </div>
       <div class="card">
-        <h3>Start B2B sau B2C+B2B</h3>
-        <div class="price-tag">450–650 €</div>
-        <div class="price-sub">Setup inițial · mentenanță opțională</div>
+        <h3>E‑commerce avansat / B2B</h3>
+        <div class="price-tag">~650–950 €</div>
+        <div class="price-sub">Funcționalități suplimentare pentru business</div>
         <ul>
-          <li>Magazin WooCommerce B2B sau B2C+B2B, cu conturi B2B și termene de plată.</li>
-          <li>Poți adăuga AI Plus/Pro pentru rapoarte și sugestii de reaprovizionare când e momentul.</li>
-          <li>Potrivit pentru afaceri care au deja un volum minim de comenzi.</li>
+          <li>Conturi și prețuri pentru clienți B2B.</li>
+          <li>Structuri de produse pachet, kit-uri, câmpuri extra la comandă.</li>
+          <li>Potrivit pentru distribuitori, producători și en‑grossiști. [web:226][web:223]</li>
         </ul>
-        <a href="#contact" class="btn-outline">Discută pachetul B2B</a>
       </div>
     </div>
   </section>
 
   <section id="configurator">
-    <h2>Configură-ți pachetul de început</h2>
+    <h2>Configurator de preț pentru site / magazin</h2>
     <p class="lead">
-      Alege tipul proiectului și tehnologia, apoi, dacă vrei, adaugă un nivel de AI. Poți seta AI pe „Fără AI (doar site)” dacă vrei doar partea de web.
+      Alege tipul de proiect, structura și câteva opțiuni suplimentare. Vei vedea o estimare de buget pentru setup, gândită în zona de preț a freelanceri-lor web, nu a agențiilor mari. [web:201][web:221]
     </p>
 
     <div class="steps">
       <div>
         <div class="card step-card">
-          <h3>Pasul 1 – Tip de proiect</h3>
-          <p style="font-size:0.9rem; color:var(--text-soft); margin-bottom:6px;">Alege varianta care descrie cel mai bine ce ai nevoie:</p>
-          <label><input type="radio" name="cfg-project" value="blog" checked /> Blog / site de conținut</label><br />
-          <label><input type="radio" name="cfg-project" value="b2c" /> Magazin online B2C</label><br />
-          <label><input type="radio" name="cfg-project" value="b2b" /> Magazin online B2B</label><br />
-          <label><input type="radio" name="cfg-project" value="b2c_blog" /> B2C + blog</label><br />
-          <label><input type="radio" name="cfg-project" value="b2c_b2b" /> B2C + B2B</label><br />
-          <label><input type="radio" name="cfg-project" value="b2c_b2b_blog" /> B2C + B2B + blog</label>
+          <h3>Pasul 1 – Tip de site</h3>
+          <p style="font-size:0.9rem; color:var(--text-soft); margin-bottom:6px;">Ce vrei să construim?</p>
+          <label><input type="radio" name="cfg-type" value="presentation" checked /> Site de prezentare (broșură online)</label><br />
+          <label><input type="radio" name="cfg-type" value="blog" /> Blog / site de conținut</label><br />
+          <label><input type="radio" name="cfg-type" value="landing" /> Landing page de campanie</label><br />
+          <label><input type="radio" name="cfg-type" value="ecom-simple" /> Magazin online simplu (B2C)</label><br />
+          <label><input type="radio" name="cfg-type" value="ecom-advanced" /> E‑commerce avansat / B2B</label>
         </div>
 
         <div class="card step-card">
-          <h3>Pasul 2 – Tehnologie & platformă</h3>
-          <p style="font-size:0.9rem; color:var(--text-soft); margin-bottom:6px;">Cum vrei să fie construit site-ul?</p>
-          <label><input type="radio" name="cfg-tech" value="wp" checked /> WordPress / WooCommerce</label><br />
-          <label><input type="radio" name="cfg-tech" value="static" /> Site custom HTML/CSS/JS (static)</label><br />
-          <label><input type="radio" name="cfg-tech" value="php" /> HTML/CSS/JS + backend PHP simplu</label>
+          <h3>Pasul 2 – Structură & conținut</h3>
+          <p style="font-size:0.9rem; color:var(--text-soft); margin-bottom:6px;">Bifează ce ai nevoie:</p>
+          <label><input type="checkbox" name="cfg-extra" value="blog-section" /> Secțiune blog / noutăți</label><br />
+          <label><input type="checkbox" name="cfg-extra" value="multilang" /> Versiune multi-limbă (ex: RO + EN)</label><br />
+          <label><input type="checkbox" name="cfg-extra" value="extra-pages" /> Mai multe pagini (peste 6–7)</label><br />
+          <label><input type="checkbox" name="cfg-extra" value="design-custom" /> Design mai custom (nu doar din temă)</label>
         </div>
 
         <div class="card step-card">
-          <h3>Pasul 3 – Manager AI & automatizări</h3>
-          <p style="font-size:0.9rem; color:var(--text-soft); margin-bottom:6px;">AI este opțional. Poți porni fără AI și adăuga mai târziu.</p>
-          <label><input type="radio" name="cfg-ai" value="none" checked /> Fără AI (doar site)</label><br />
-          <label><input type="radio" name="cfg-ai" value="basic" /> AI Basic – +50 € setup</label><br />
-          <label><input type="radio" name="cfg-ai" value="plus" /> AI Plus – +120 € setup</label><br />
-          <label><input type="radio" name="cfg-ai" value="pro" /> AI Pro – +220 € setup</label>
+          <h3>Pasul 3 – E‑commerce & integrare</h3>
+          <p style="font-size:0.9rem; color:var(--text-soft); margin-bottom:6px;">Dacă vrei și magazin online:</p>
+          <label><input type="checkbox" name="cfg-extra" value="payments" /> Plăți online (Stripe / PayPal etc.)</label><br />
+          <label><input type="checkbox" name="cfg-extra" value="shipping" /> Configurare livrare mai complexă (zone, mai multe metode)</label><br />
+          <label><input type="checkbox" name="cfg-extra" value="b2b-logic" /> Elemente B2B (conturi, prețuri speciale)</label>
         </div>
       </div>
 
@@ -646,145 +619,87 @@
         <h3>Rezumat configurație</h3>
         <div class="summary-line">
           <span class="summary-label">Tip proiect:</span>
-          <span class="summary-value" id="cfg-summary-project">Blog / site de conținut</span>
+          <span class="summary-value" id="cfg-summary-type">Site de prezentare</span>
         </div>
         <div class="summary-line">
-          <span class="summary-label">Tehnologie:</span>
-          <span class="summary-value" id="cfg-summary-tech">WordPress / WooCommerce</span>
-        </div>
-        <div class="summary-line">
-          <span class="summary-label">Manager AI:</span>
-          <span class="summary-value" id="cfg-summary-ai">Fără AI (doar site)</span>
+          <span class="summary-label">Opțiuni suplimentare:</span>
+          <span class="summary-value" id="cfg-summary-options">Minim, fără extra</span>
         </div>
         <hr style="border:none; border-top:1px solid rgba(148,163,184,0.4); margin:10px 0;" />
-        <p style="margin:0; font-size:0.9rem;">Preț estimativ setup (site + AI, dacă este ales):</p>
+        <p style="margin:0; font-size:0.9rem;">Preț estimativ setup:</p>
         <p class="summary-price"><span id="cfg-price">0</span> €</p>
         <p class="summary-note">
-          Setup-ul este un cost unic. Dacă alegi și AI, vei avea și o taxă lunară de mentenanță, în funcție de nivelul AI (vezi secțiunea de mai jos).
+          Aceasta este o estimare bazată pe tipul de site și complexitate. Majoritatea site-urilor mici realizate de freelanceri se încadrează în astfel de intervale, sub costurile agențiilor clasice. [web:201][web:218]
         </p>
         <p class="summary-note" style="margin-top:10px;">
-          Pentru o ofertă exactă, trimite configurația prin formularul de contact și menționează „Configurator AGC AI”.
+          Pentru o ofertă exactă, poți trimite configurația prin formularul de contact și menționând „Configurator AGC Web”.
         </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="maintenance">
-    <h2>Mentenanță & niveluri AI</h2>
-    <p class="lead">
-      Mentenanța îți asigură că site-ul și fluxurile AI rămân actualizate, sigure și adaptate business-ului tău. Poți porni doar cu mentenanță de site, fără AI, sau poți alege unul dintre nivelurile de mai jos.
-    </p>
-    <div class="grid-3">
-      <div class="card">
-        <h3>Doar mentenanță site</h3>
-        <div class="price-tag">30 €/lună</div>
-        <ul>
-          <li>Update-uri de bază pentru platformă și pluginuri.</li>
-          <li>Monitorizare funcționare site și mici corecții.</li>
-          <li>Potrivit dacă nu vrei încă AI, dar vrei siguranță pe partea de web.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>AI Basic + mentenanță</h3>
-        <div class="price-tag">+50 € setup · 40 €/lună</div>
-        <ul>
-          <li>Descrieri de produse sau articole generate/optimizate de AI.</li>
-          <li>Text AI pentru emailul de confirmare comandă.</li>
-          <li>1–2 ore/lună pentru ajustări de texte și prompturi.</li>
-          <li>Include și mentenanță de bază pentru site.</li>
-        </ul>
-      </div>
-      <div class="card card-highlight">
-        <h3>AI Plus + mentenanță</h3>
-        <div class="price-tag">+120 € setup · 80 €/lună</div>
-        <ul>
-          <li>Tot ce este în Basic.</li>
-          <li>Emailuri follow-up și coș abandonat generate/ajustate de AI.</li>
-          <li>Raport lunar simplu (top produse, vânzări, clienți activi).</li>
-          <li>3–4 ore/lună pentru ajustări, conținut nou și optimizări.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>AI Pro + mentenanță</h3>
-        <div class="price-tag">+220 € setup · 140 €/lună</div>
-        <ul>
-          <li>Tot ce este în Plus.</li>
-          <li>Alerte de stoc și fișiere pregătite pentru AWB/facturi.</li>
-          <li>Raport săptămânal cu sinteză vânzări și stocuri.</li>
-          <li>5–6 ore/lună pentru monitorizare, noi fluxuri și suport.</li>
-        </ul>
       </div>
     </div>
   </section>
 
   <section id="demos">
-    <h2>Proiecte demo AGC AI</h2>
+    <h2>Demo-uri de site și magazin</h2>
     <p class="lead">
-      Vezi exemple de magazin B2C, B2B și blog pe care le poți avea la un setup de început. Demo-urile sunt statice, dar arată clar structura și conținutul posibil.
+      Demo-urile îți arată cum pot arăta structura și conținutul pentru un magazin B2C, un portal B2B și un blog.
+      Oricare dintre ele poate fi adaptat la nișa ta (fashion, servicii, distribuție etc.). [web:196][web:226]
     </p>
     <div class="grid-3">
       <div class="card">
         <h3>Magazin demo B2C</h3>
-        <p>Exemplu de categorie de produse și pagină de produs pentru un magazin B2C.</p>
+        <p>Exemplu de catalog de produse și pagină de produs pentru un magazin orientat spre consumatori.</p>
         <a href="demo-b2c.html" class="btn-primary" style="font-size:0.85rem; padding:7px 14px;">Vezi demo B2C</a>
       </div>
       <div class="card">
         <h3>Magazin demo B2B</h3>
-        <p>Exemplu de portal B2B cu tabel de produse, prețuri B2B și recomandări AI.</p>
+        <p>Exemplu de portal B2B cu tabel de produse, informații pentru clienți business și evidență de stocuri.</p>
         <a href="demo-b2b.html" class="btn-primary" style="font-size:0.85rem; padding:7px 14px;">Vezi demo B2B</a>
       </div>
       <div class="card">
         <h3>Blog demo</h3>
-        <p>Exemplu de blog cu articol recomandat, listă de articole și sidebar generat de AI.</p>
+        <p>Exemplu de blog cu articol principal, listă de articole și sidebar cu categorii și articole populare.</p>
         <a href="demo-blog.html" class="btn-primary" style="font-size:0.85rem; padding:7px 14px;">Vezi demo blog</a>
       </div>
     </div>
   </section>
 
-  <section id="process">
-    <h2>Cum lucrăm la AGC AI</h2>
-    <p class="lead">
-      Procesul este simplu: poți porni doar cu site-ul, iar AI-ul și mentenanța se adaugă pas cu pas, pe măsură ce vezi ce funcționează.
-    </p>
-    <ol>
-      <li><strong>Analiză gratuită</strong> – discutăm modelul tău de business și identificăm 2–3 fluxuri simple de automatizat.</li>
-      <li><strong>Setup site</strong> – construim site-ul sau magazinul, fără obligație de AI.</li>
-      <li><strong>AI opțional</strong> – dacă vrei, activăm AI Basic/Plus/Pro pentru conținut, emailuri și rapoarte.</li>
-      <li><strong>Mentenanță</strong> – ne ocupăm lunar de update-uri, ajustări AI și mici îmbunătățiri în limitele pachetului ales.</li>
-    </ol>
-  </section>
-
-  <section id="about">
-    <h2>Despre AGC AI</h2>
+  <section id="future-ai">
+    <h2>AI & automatizări – etapă următoare</h2>
     <p>
-      AGC AI (Advanced Generative Computing) ajută afacerile mici și medii să intre în zona de automatizare AI fără investiții uriașe. Ideea este să începi cu un pachet mic, clar, și să crești în timp.
+      În prezent, focusul este pe dezvoltarea de site-uri și magazine online clasice. Următorul pas va fi să poți adăuga,
+      peste site-ul pe care îl construim acum, pachete de automatizare cu AI pentru descrieri, emailuri și rapoarte.
     </p>
     <p>
-      Prețurile de setup și mentenanță sunt gândite să fie apropiate de ce plătește un IMM pe mentenanță web și servicii digitale de bază, astfel încât AI-ul să devină o extensie naturală a site-ului tău.
+      Ideea este ca baza (site-ul) să fie făcută corect, astfel încât atunci când vrei să activezi aceste opțiuni,
+      să fie ușor de integrat fără să reconstruiești totul de la zero.
+    </p>
+    <p>
+      Clienții existenți vor avea acces prioritar la aceste pachete și condiții preferențiale, pentru că site-urile lor vor fi deja pregătite din punct de vedere structură.
     </p>
   </section>
 
   <section id="contact">
-    <h2>Contact AGC AI</h2>
+    <h2>Contact AGC Web</h2>
     <p class="lead">
-      Spune câteva lucruri despre afacerea ta și dacă vrei doar site, sau și AI. Primești un plan clar, cu setup și mentenanță adaptate bugetului tău.
+      Orice nișă ai avea – magazin fizic, servicii, distribuție, conținut – poți începe cu un site sau magazin simplu și apoi să îl extinzi.
+      Trimite câteva detalii și primești un răspuns cu pașii următori și un buget estimativ.
     </p>
     <form>
       <input type="text" name="nume" placeholder="Nume" required />
       <input type="email" name="email" placeholder="Email" required />
-      <input type="text" name="website" placeholder="Website / Magazin (opțional)" />
-      <textarea name="mesaj" placeholder="Descrie pe scurt afacerea și ce vrei (doar site / site + AI Basic / Plus / Pro)"></textarea>
+      <input type="text" name="website" placeholder="Website existent (dacă ai)" />
+      <textarea name="mesaj" placeholder="Descrie pe scurt afacerea și ce tip de site îți dorești (prezentare, blog, e‑commerce simplu / avansat)."></textarea>
       <button type="submit" class="btn-submit">Trimite mesaj</button>
     </form>
     <p class="contact-note">
-      Poți menționa direct în mesaj: „Vreau doar site la început” sau „Vreau și AI Basic/Plus/Pro”.
+      Poți adăuga și rezultatul din configurator (de ex. „Magazin online simplu + blog + plăți online”) sau poți spune doar „nu știu sigur, vreau să discutăm”.
     </p>
   </section>
 
 </main>
 
 <footer>
-  © <span id="year"></span> AGC AI – Advanced Generative Computing. Toate drepturile rezervate.
+  © <span id="year"></span> AGC Web – Site-uri & Magazine online pentru IMM-uri.
 </footer>
 
 <script>
@@ -794,76 +709,77 @@
     if (yearEl) yearEl.textContent = new Date().getFullYear();
   })();
 
-  function updateConfigSummary(project, tech, ai) {
-    const projectMap = {
-      blog: "Blog / site de conținut",
-      b2c: "Magazin online B2C",
-      b2b: "Magazin online B2B",
-      b2c_blog: "Magazin B2C + blog",
-      b2c_b2b: "Magazin B2C + B2B",
-      b2c_b2b_blog: "Magazin B2C + B2B + blog"
+  function updateSummary(type, extras) {
+    const typeMap = {
+      "presentation": "Site de prezentare",
+      "blog": "Blog / site de conținut",
+      "landing": "Landing page de campanie",
+      "ecom-simple": "Magazin online simplu (B2C)",
+      "ecom-advanced": "E‑commerce avansat / B2B"
     };
-    const techMap = {
-      wp: "WordPress / WooCommerce",
-      static: "Site custom HTML/CSS/JS",
-      php: "HTML/CSS/JS + backend PHP simplu"
-    };
-    const aiMap = {
-      none: "Fără AI (doar site)",
-      basic: "AI Basic – +50 € setup",
-      plus: "AI Plus – +120 € setup",
-      pro: "AI Pro – +220 € setup"
+    const extraMap = {
+      "blog-section": "Secțiune blog",
+      "multilang": "Multi-limbă",
+      "extra-pages": "Pagini suplimentare",
+      "design-custom": "Design custom",
+      "payments": "Plăți online",
+      "shipping": "Livrare complexă",
+      "b2b-logic": "Logică B2B"
     };
 
-    const pEl = document.getElementById('cfg-summary-project');
-    const tEl = document.getElementById('cfg-summary-tech');
-    const aEl = document.getElementById('cfg-summary-ai');
+    const typeEl = document.getElementById('cfg-summary-type');
+    const optEl = document.getElementById('cfg-summary-options');
 
-    if (pEl) pEl.textContent = projectMap[project] || "";
-    if (tEl) tEl.textContent = techMap[tech] || "";
-    if (aEl) aEl.textContent = aiMap[ai] || "";
+    if (typeEl) typeEl.textContent = typeMap[type] || "";
+    if (optEl) {
+      if (!extras.length) {
+        optEl.textContent = "Minim, fără extra";
+      } else {
+        optEl.textContent = extras.map(e => extraMap[e] || e).join(", ");
+      }
+    }
   }
 
   function calcConfigPrice() {
-    const project = (document.querySelector('input[name="cfg-project"]:checked') || {}).value || "blog";
-    const tech = (document.querySelector('input[name="cfg-tech"]:checked') || {}).value || "wp";
-    const ai = (document.querySelector('input[name="cfg-ai"]:checked') || {}).value || "none";
+    const type = (document.querySelector('input[name="cfg-type"]:checked') || {}).value || "presentation";
+    const extrasNodes = document.querySelectorAll('input[name="cfg-extra"]:checked');
+    const extras = Array.from(extrasNodes).map(el => el.value);
 
-    // Bază proiect – setup site
+    // Bază în funcție de tip
     let base = 0;
-    switch (project) {
-      case "blog": base = 250; break;
-      case "b2c": base = 350; break;
-      case "b2b": base = 450; break;
-      case "b2c_blog": base = 500; break;
-      case "b2c_b2b": base = 650; break;
-      case "b2c_b2b_blog": base = 800; break;
+    switch (type) {
+      case "presentation": base = 250; break;
+      case "blog": base = 280; break;
+      case "landing": base = 220; break;
+      case "ecom-simple": base = 420; break;
+      case "ecom-advanced": base = 650; break;
       default: base = 250;
     }
 
-    // Supliment tehnologie
-    let techExtra = 0;
-    if (tech === "static") techExtra = 80;
-    if (tech === "php") techExtra = 150;
+    // Extra-uri
+    let extraTotal = 0;
+    extras.forEach(val => {
+      if (val === "blog-section") extraTotal += 60;
+      if (val === "multilang") extraTotal += 100;
+      if (val === "extra-pages") extraTotal += 80;
+      if (val === "design-custom") extraTotal += 120;
+      if (val === "payments") extraTotal += 70;
+      if (val === "shipping") extraTotal += 70;
+      if (val === "b2b-logic") extraTotal += 130;
+    });
 
-    // Supliment AI (setup) – poate fi zero
-    let aiExtra = 0;
-    if (ai === "basic") aiExtra = 50;
-    if (ai === "plus") aiExtra = 120;
-    if (ai === "pro") aiExtra = 220;
-
-    let price = base + techExtra + aiExtra;
+    let price = base + extraTotal;
 
     // Prag minim
-    if (price < 250) price = 250;
+    if (price < 220) price = 220;
 
     const priceEl = document.getElementById('cfg-price');
     if (priceEl) priceEl.textContent = price;
 
-    updateConfigSummary(project, tech, ai);
+    updateSummary(type, extras);
   }
 
-  ['cfg-project','cfg-tech','cfg-ai'].forEach(function(group){
+  ['cfg-type','cfg-extra'].forEach(function(group){
     const inputs = document.querySelectorAll('input[name="'+group+'"]');
     inputs.forEach(function(el){
       el.addEventListener('change', calcConfigPrice);
