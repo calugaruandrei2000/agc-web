@@ -2,347 +2,220 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8" />
-  <title>Blog demo – AGC AI Insights</title>
+  <title>Demo blog – AGC Web</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Blog demo cu articole detaliate despre site-uri de prezentare, magazine online B2C și portaluri B2B." />
   <style>
     :root {
-      --bg: #f3f4f6;
-      --accent: #7c3aed;
-      --accent-soft: #ede9fe;
-      --accent-dark: #5b21b6;
-      --text: #111827;
+      --bg-main: #f4f4fb;
+      --bg-header: #020617;
+      --accent: #38bdf8;
+      --accent-dark: #0ea5e9;
+      --text: #0f172a;
       --text-soft: #6b7280;
       --card-bg: #ffffff;
-      --radius-lg: 16px;
-      --shadow-soft: 0 14px 40px rgba(15,23,42,0.12);
+      --radius-lg: 14px;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
       color: var(--text);
+      background: var(--bg-main);
     }
     a { text-decoration: none; color: inherit; }
 
-    /* HEADER */
     header {
-      background: #111827;
-      color: #f9fafb;
-      padding: 14px 18px;
+      background: var(--bg-header);
+      color: #e5e7eb;
+      padding: 10px 18px;
     }
     .header-inner {
-      max-width: 1120px;
+      max-width: 1000px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 16px;
     }
     .brand {
       display: flex;
       flex-direction: column;
       gap: 2px;
     }
-    .brand-title { font-weight: 700; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .brand-sub { font-size: 0.75rem; color: #9ca3af; }
-    nav {
-      display: flex;
-      gap: 16px;
+    .brand-title {
+      font-weight: 800;
+      letter-spacing: 0.08em;
       font-size: 0.9rem;
+      text-transform: uppercase;
     }
-    nav a { color: #e5e7eb; opacity: 0.9; }
-    nav a:hover { opacity: 1; }
-
-    /* MAIN */
-    main {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 24px 18px 48px;
-    }
-
-    /* LAYOUT */
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr);
-      gap: 24px;
-    }
-
-    /* FEATURED POST */
-    .featured {
-      background: radial-gradient(circle at top, #7c3aed 0, #4b5563 50%);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      color: #f9fafb;
-      box-shadow: var(--shadow-soft);
-      margin-bottom: 20px;
-    }
-    .featured h1 {
-      margin: 0 0 8px;
-      font-size: 1.6rem;
-    }
-    .featured-meta {
-      font-size: 0.8rem;
-      color: #e5e7eb;
-      margin-bottom: 8px;
-    }
-    .tag {
-      display: inline-block;
-      padding: 3px 8px;
-      border-radius: 999px;
+    .brand-sub {
       font-size: 0.75rem;
-      background: rgba(17,24,39,0.4);
-      color: #e5e7eb;
-      margin-right: 4px;
+      color: #9ca3af;
     }
-    .featured p {
-      font-size: 0.95rem;
-      margin: 6px 0 10px;
-    }
-    .btn-read {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: #f9fafb;
-      color: #111827;
+    .nav-links {
+      display: flex;
+      gap: 12px;
       font-size: 0.85rem;
-      font-weight: 600;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #cbd5f5;
+      opacity: 0.9;
+    }
+    .nav-links a:hover {
+      color: #ffffff;
+      opacity: 1;
     }
 
-    /* POST LIST */
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 18px 40px;
+    }
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 6px;
+    }
+    .lead {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+    }
+
     .post-list {
       display: grid;
-      gap: 16px;
+      gap: 12px;
     }
-    .post {
+
+    .post-card {
       background: var(--card-bg);
-      border-radius: 14px;
-      padding: 14px 16px;
-      box-shadow: 0 10px 28px rgba(15,23,42,0.06);
+      border-radius: var(--radius-lg);
+      padding: 12px 14px;
       border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 25px rgba(15,23,42,0.06);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, border-color 0.1s ease;
     }
-    .post h2 {
-      margin: 0 0 4px;
-      font-size: 1.1rem;
+    .post-card:hover {
+      transform: translateY(-1px);
+      border-color: #cbd5f5;
+      box-shadow: 0 14px 35px rgba(15,23,42,0.08);
+    }
+    .post-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
     }
     .post-meta {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-soft);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+    }
+    .post-teaser {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 6px;
     }
     .post-tags {
-      margin-bottom: 6px;
+      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 0.75rem;
     }
-    .post-tag {
-      display: inline-block;
+    .tag-pill {
       padding: 2px 8px;
       border-radius: 999px;
-      font-size: 0.75rem;
-      background: #eff6ff;
-      color: #1d4ed8;
-      margin-right: 4px;
-    }
-    .post p {
-      margin: 0;
-      font-size: 0.92rem;
-      color: var(--text-soft);
+      background: #e0f2fe;
+      color: #0b1120;
     }
 
-    /* SIDEBAR */
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .widget {
-      background: var(--card-bg);
-      border-radius: 14px;
-      padding: 14px 16px;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 10px 28px rgba(15,23,42,0.06);
-      font-size: 0.9rem;
-    }
-    .widget h3 {
-      margin-top: 0;
-      margin-bottom: 6px;
-      font-size: 1rem;
-    }
-    .widget ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 8px 0 0;
-    }
-    .widget li {
-      margin-bottom: 4px;
-      color: var(--text-soft);
-      font-size: 0.88rem;
-    }
-    .widget li span {
-      color: var(--accent-dark);
-    }
-    .ai-note {
-      font-size: 0.82rem;
-      color: var(--text-soft);
+    .post-read {
       margin-top: 6px;
+      font-size: 0.85rem;
+      color: #0369a1;
+    }
+    .post-read span {
+      border-bottom: 1px solid rgba(37,99,235,0.3);
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .layout { grid-template-columns: minmax(0,1fr); }
-    }
     @media (max-width: 700px) {
-      nav { display: none; }
+      main { padding-inline: 14px; }
     }
   </style>
 </head>
 <body>
+
 <header>
   <div class="header-inner">
     <div class="brand">
-      <div class="brand-title"><a href="index.html">AGC AI Insights</a></div>
-      <div class="brand-sub">Blog demo generat și administrat de manager AI</div>
+      <div class="brand-title">AGC Web</div>
+      <div class="brand-sub">Demo blog</div>
     </div>
-    <nav>
-      <a href="#top">Blog</a>
-      <a href="index.html#services">Servicii</a>
-      <a href="index.html#demos">Demo-uri</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
+    <div class="nav-links">
+      <a href="index.html">← Înapoi la site</a>
+    </div>
   </div>
 </header>
 
-<main id="top">
-  <div class="featured">
-    <div class="featured-meta">
-      <span class="tag">eCommerce</span>
-      <span class="tag">Automatizare</span>
-      Publicat: 05.12.2025 · Timp de citire: 6 minute
-    </div>
-    <h1>Cum îți poți automatiza magazinul online în 30 de zile</h1>
-    <p>
-      Un manager AI bine configurat poate prelua o mare parte din sarcinile repetitive dintr-un magazin online:
-      descrieri de produse, emailuri de follow-up, rapoarte de vânzări și pregătirea fișierelor pentru curieri.
-      Tu rămâi cu deciziile strategice și relația cu clienții.
-    </p>
-    <a href="#article-1" class="btn-read">Citește articolul</a>
-  </div>
+<main>
+  <h1>Blog demo AGC Web</h1>
+  <p class="lead">
+    Index de articole mai lungi, fiecare deschis într-o pagină separată. Ideal pentru a vedea cum arată un blog static cu mai multe pagini HTML.[web:346][web:356]
+  </p>
 
-  <div class="layout">
-    <!-- LISTA ARTICOLE -->
-    <section class="post-list">
-      <article class="post" id="article-1">
-        <h2>Cum îți poți automatiza magazinul online în 30 de zile</h2>
-        <div class="post-meta">
-          Categorii: eCommerce, Automatizare · Publicat: 05.12.2025
-        </div>
-        <div class="post-tags">
-          <span class="post-tag">Shop</span>
-          <span class="post-tag">AI Workflows</span>
-        </div>
-        <p>
-          Un plan simplu în 3 etape: identifici taskurile repetitive, configurezi fluxuri AI pentru conținut și comunicare,
-          apoi conectezi rapoarte automate pentru a vedea impactul. Managerul AI nu înlocuiește echipa, dar îi oferă timp
-          înapoi în fiecare săptămână.
-        </p>
-      </article>
-
-      <article class="post">
-        <h2>De ce B2B are nevoie de fluxuri automatizate cu AI</h2>
-        <div class="post-meta">
-          Categorii: B2B, Procese · Publicat: 22.11.2025
-        </div>
-        <div class="post-tags">
-          <span class="post-tag">B2B</span>
-          <span class="post-tag">Procese</span>
-        </div>
-        <p>
-          În mediul B2B, comenzile repetate, termenele de plată și comunicarea constantă cu clienții pot fi gestionate mult
-          mai eficient prin fluxuri AI. De la sugestii de reaprovizionare până la raportări săptămânale, managerul AI
-          devine un asistent pentru echipa de vânzări.
-        </p>
-      </article>
-
-      <article class="post">
-        <h2>Ce poate face un „manager AI” pentru un blog de conținut</h2>
-        <div class="post-meta">
-          Categorii: Content, AI · Publicat: 10.11.2025
-        </div>
-        <div class="post-tags">
-          <span class="post-tag">Content</span>
-          <span class="post-tag">SEO</span>
-        </div>
-        <p>
-          De la idei de articole și structuri de texte până la titluri optimizate și descrieri meta, un manager AI poate
-          transforma un blog într-o mașină de publicat conținut constant și relevant, fără să fie nevoie să scrii totul de la zero.
-        </p>
-      </article>
-
-      <article class="post">
-        <h2>5 emailuri automate pe care orice magazin ar trebui să le aibă</h2>
-        <div class="post-meta">
-          Categorii: Email marketing · Publicat: 02.11.2025
-        </div>
-        <div class="post-tags">
-          <span class="post-tag">Email</span>
-          <span class="post-tag">Automatizare</span>
-        </div>
-        <p>
-          Confirmare comandă, follow-up după livrare, cerere de review, reactivare clienți inactivi și recuperare coș
-          abandonat. Toate pot fi generate, adaptate și trimise automat de un manager AI, în funcție de comportamentul clientului.
-        </p>
-      </article>
-
-      <article class="post">
-        <h2>Cum folosești rapoartele AI ca să iei decizii mai rapide</h2>
-        <div class="post-meta">
-          Categorii: Analiză · Publicat: 25.10.2025
-        </div>
-        <div class="post-tags">
-          <span class="post-tag">Rapoarte</span>
-          <span class="post-tag">Decizii</span>
-        </div>
-        <p>
-          În loc să pierzi ore întregi în Excel, un manager AI poate genera rezumate clare: ce produse merg bine,
-          ce clienți scad în activitate și ce campanii merită repetate. Totul într-un format ușor de parcurs.
-        </p>
-      </article>
-    </section>
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <div class="widget">
-        <h3>Categorii</h3>
-        <ul>
-          <li>eCommerce & magazin online</li>
-          <li>B2B & procese interne</li>
-          <li>Content & SEO</li>
-          <li>Email & automatizare</li>
-          <li>Rapoarte & analiză</li>
-        </ul>
+  <section class="post-list">
+    <article class="post-card">
+      <h2 class="post-title">Cum gândești un site de prezentare care chiar ajută afacerea</h2>
+      <div class="post-meta">15 ianuarie 2025 · ~8–10 min de citit</div>
+      <p class="post-teaser">
+        De ce un site de prezentare nu ar trebui să fie doar „frumos”, ci conectat direct la obiectivele afacerii: lead-uri, programări, încredere și claritate.
+      </p>
+      <div class="post-tags">
+        <span class="tag-pill">Site de prezentare</span>
+        <span class="tag-pill">Structură</span>
+        <span class="tag-pill">Conținut</span>
       </div>
+      <a class="post-read" href="post-site-prezentare.html" target="_blank" rel="noopener">
+        <span>Citește articolul complet →</span>
+      </a>
+    </article>
 
-      <div class="widget">
-        <h3>Cele mai citite articole</h3>
-        <ul>
-          <li><span>1.</span> „Cum îți poți automatiza magazinul online în 30 de zile”</li>
-          <li><span>2.</span> „5 emailuri automate pe care orice magazin ar trebui să le aibă”</li>
-          <li><span>3.</span> „De ce B2B are nevoie de fluxuri automatizate cu AI”</li>
-        </ul>
+    <article class="post-card">
+      <h2 class="post-title">De la catalog la coș: anatomia unui magazin online B2C simplu</h2>
+      <div class="post-meta">3 februarie 2025 · ~10–12 min de citit</div>
+      <p class="post-teaser">
+        Cum arată, pas cu pas, un magazin B2C: de la listă de produse și filtre până la coș, checkout și micile decizii de UX care influențează conversia.
+      </p>
+      <div class="post-tags">
+        <span class="tag-pill">B2C</span>
+        <span class="tag-pill">E‑commerce</span>
+        <span class="tag-pill">Checkout</span>
       </div>
+      <a class="post-read" href="post-magazin-b2c.html" target="_blank" rel="noopener">
+        <span>Citește articolul complet →</span>
+      </a>
+    </article>
 
-      <div class="widget">
-        <h3>Articole propuse de managerul AI</h3>
-        <ul>
-          <li>„Cum prioritizezi produsele pentru campanii folosind AI”</li>
-          <li>„Diferența dintre AI Basic, Plus și Pro pentru un magazin mic”</li>
-          <li>„Checklist de automatizare pentru un magazin B2B nou”</li>
-        </ul>
-        <p class="ai-note">
-          Subiectele de mai sus pot fi generate automat în funcție de sezon, industrie și istoricul de conținut.
-        </p>
+    <article class="post-card">
+      <h2 class="post-title">De ce portalurile B2B arată altfel decât magazinele B2C</h2>
+      <div class="post-meta">20 februarie 2025 · ~9–11 min de citit</div>
+      <p class="post-teaser">
+        De ce în B2B vezi tabele, coduri de produs, liste de preț și termene de plată, nu doar carduri vizuale. Și cum traduci asta într-un portal clar pentru clienți.[web:306][web:312]
+      </p>
+      <div class="post-tags">
+        <span class="tag-pill">B2B</span>
+        <span class="tag-pill">Portal clienți</span>
+        <span class="tag-pill">Procese</span>
       </div>
-    </aside>
-  </div>
+      <a class="post-read" href="post-portal-b2b.html" target="_blank" rel="noopener">
+        <span>Citește articolul complet →</span>
+      </a>
+    </article>
+
+    <!-- Poți adăuga ușor articole noi duplicând un <article> și schimbând linkul -->
+  </section>
 </main>
+
 </body>
 </html>

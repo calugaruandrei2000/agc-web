@@ -4,13 +4,14 @@
   <meta charset="UTF-8" />
   <title>AGC Web – Site-uri & Magazine online pentru IMM-uri</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="AGC Web dezvoltă site-uri de prezentare, bloguri și magazine online pentru afaceri mici și medii. Prețuri clare, configurator de buget și demo-uri. Mai târziu, vei putea adăuga și automatizări cu AI peste site-ul tău." />
+  <meta name="description" content="AGC Web dezvoltă site-uri de prezentare, bloguri și magazine online pentru afaceri mici și medii. Prețuri clare, configurator de buget și demo-uri. Pe viitor poți adăuga și automatizări cu AI peste site-ul tău." />
   <style>
     :root {
       --bg-main: #f4f4fb;
       --bg-hero: #020617;
       --accent: #38bdf8;
       --accent-dark: #0ea5e9;
+      --accent-soft: #e0f2fe;
       --text: #0f172a;
       --text-soft: #6b7280;
       --card-bg: #ffffff;
@@ -62,15 +63,23 @@
     }
     .nav-links {
       display: flex;
-      gap: 18px;
+      gap: 16px;
       font-size: 0.9rem;
+      align-items: center;
     }
     .nav-links a {
       color: #cbd5f5;
       opacity: 0.9;
+      padding-bottom: 3px;
+      border-bottom: 2px solid transparent;
+      transition: opacity 0.15s ease, border-color 0.15s ease;
     }
     .nav-links a:hover {
       color: #ffffff;
+      opacity: 1;
+    }
+    .nav-links a.active {
+      border-color: var(--accent);
       opacity: 1;
     }
     .nav-cta {
@@ -80,9 +89,31 @@
       background: var(--accent);
       color: #020617;
       font-weight: 600;
+      box-shadow: 0 10px 25px rgba(56,189,248,0.3);
+      white-space: nowrap;
     }
     .nav-cta:hover {
       background: var(--accent-dark);
+    }
+
+    /* NAV: desktop vs mobile */
+    .nav-links-desktop { display: flex; }
+    .nav-links-mobile-toggle {
+      display: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+    .nav-links-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px 18px 14px;
+      background: #020617;
+      border-top: 1px solid rgba(148,163,184,0.25);
+    }
+    .nav-links-mobile a {
+      color: #e5e7eb;
+      font-size: 0.95rem;
     }
 
     /* HERO */
@@ -148,6 +179,7 @@
       color: #020617;
       font-weight: 600;
       font-size: 0.95rem;
+      box-shadow: 0 16px 35px rgba(15,23,42,0.5);
     }
     .btn-primary:hover { background: var(--accent-dark); }
     .btn-secondary {
@@ -233,6 +265,12 @@
       padding: 20px;
       box-shadow: 0 12px 35px rgba(15,23,42,0.06);
       border: 1px solid rgba(148,163,184,0.15);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 45px rgba(15,23,42,0.12);
+      border-color: rgba(148,163,184,0.4);
     }
     .card h3 {
       margin-top: 0;
@@ -279,20 +317,29 @@
       padding: 4px 10px;
       font-weight: 600;
     }
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.9);
-      font-size: 0.85rem;
+
+    /* WHY SECTION */
+    #why .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
       margin-top: 8px;
     }
-    .btn-outline:hover {
-      border-color: var(--accent);
+    #why .pill {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
       color: #0b1120;
     }
+
+    /* PROCESS */
+    #process ol {
+      padding-left: 20px;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+    }
+    #process li { margin-bottom: 6px; }
 
     /* CONFIGURATOR */
     #configurator .steps {
@@ -388,6 +435,14 @@
       border-radius: 10px;
       border: 1px solid #cbd5f5;
       font: inherit;
+      transition: border-color 0.12s ease, box-shadow 0.12s ease;
+    }
+    #contact input:focus,
+    #contact textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft);
+      background: #f9fafb;
     }
     #contact textarea {
       min-height: 110px;
@@ -402,12 +457,69 @@
       cursor: pointer;
       font-weight: 600;
       font-size: 0.9rem;
+      justify-self: flex-start;
     }
     .btn-submit:hover { background: #020617; }
     #contact .contact-note {
       font-size: 0.9rem;
       color: var(--text-soft);
       margin-top: 6px;
+    }
+    .form-error {
+      font-size: 0.8rem;
+      color: #b91c1c;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 14px;
+      right: 14px;
+      background: #0f172a;
+      color: #e5e7eb;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      box-shadow: 0 12px 30px rgba(15,23,42,0.6);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 60;
+    }
+    .toast.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* BACK TO TOP */
+    .back-to-top {
+      position: fixed;
+      bottom: 14px;
+      left: 14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid #cbd5f5;
+      background: #f9fafb;
+      color: #0b1120;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(15,23,42,0.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      transform: translateY(8px);
+      z-index: 60;
+    }
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
 
     /* FOOTER */
@@ -416,6 +528,9 @@
       padding: 26px 18px 30px;
       font-size: 0.8rem;
       color: #6b7280;
+    }
+    footer a {
+      color: #0369a1;
     }
 
     @media (max-width: 960px) {
@@ -430,10 +545,10 @@
     }
     @media (max-width: 780px) {
       .nav-inner {
-        flex-wrap: wrap;
-        gap: 8px;
+        flex-wrap: nowrap;
       }
-      .nav-links { display: none; }
+      .nav-links-desktop { display: none; }
+      .nav-links-mobile-toggle { display: block; }
     }
   </style>
 </head>
@@ -445,16 +560,24 @@
       <div class="nav-logo">AGC Web</div>
       <div class="nav-sub">Site-uri & Magazine online</div>
     </div>
-    <div class="nav-links">
+    <div class="nav-links nav-links-desktop">
       <a href="#services">Servicii</a>
       <a href="#packages">Pachete</a>
       <a href="#configurator">Configurator</a>
       <a href="#demos">Demo-uri</a>
-      <a href="ghid.html">Ghid site / magazin</a>
-      <a href="#future-ai">AI (în curând)</a>
       <a href="#contact">Contact</a>
+      <a href="ghid.html" target="_blank" rel="noopener">Ghid</a>
     </div>
+    <div class="nav-links-mobile-toggle" id="navToggle">☰</div>
     <a href="#contact" class="nav-cta">Cere o discuție</a>
+  </div>
+  <div class="nav-links nav-links-mobile" id="navMobile">
+    <a href="#services">Servicii</a>
+    <a href="#packages">Pachete</a>
+    <a href="#configurator">Configurator</a>
+    <a href="#demos">Demo-uri</a>
+    <a href="#contact">Contact</a>
+    <a href="ghid.html" target="_blank" rel="noopener">Ghid</a>
   </div>
 </nav>
 
@@ -472,16 +595,15 @@
       </div>
       <h1>Site-uri și magazine online clare, cu prețuri de început și spațiu să crești în timp.</h1>
       <p>
-        AGC Web construiește site-uri de prezentare, bloguri și magazine online pentru IMM-uri:
-        de la pagini simple „cine suntem” până la e‑commerce mai avansat. Azi ne ocupăm de dezvoltare web clasică, iar pe viitor vei putea adăuga și automatizări cu AI peste ce ai deja.
+        AGC Web construiește site-uri de prezentare, bloguri și magazine online pentru IMM-uri: de la pagini simple „cine suntem” până la e‑commerce mai avansat.
+        Azi focusul este pe dezvoltare web solidă, iar pe viitor vei putea adăuga și automatizări cu AI peste ce ai deja.
       </p>
       <div class="hero-ctas">
         <a href="#configurator" class="btn-primary">Calculează un preț estimativ</a>
-        <a href="ghid.html" class="btn-secondary">Vezi ghidul pentru site/magazin</a>
+        <a href="ghid.html" target="_blank" rel="noopener" class="btn-secondary">Vezi ghidul pentru site/magazin</a>
       </div>
       <div class="hero-note">
-        Pentru majoritatea afacerilor mici, bugetele de start pentru un site simplu se încadrează în câteva sute de euro,
-        mult sub nivelul agențiilor mari, dar suficient pentru un proiect solid. [web:218][web:221]
+        Pentru majoritatea afacerilor mici, bugetele de start pentru un site simplu se încadrează în câteva sute de euro, sub costurile agențiilor mari, dar suficiente pentru un proiect solid.
       </div>
     </div>
     <div class="hero-right">
@@ -489,7 +611,7 @@
         <h2>Ce poți construi aici, indiferent de nișă</h2>
         <p>
           Site-ul tău poate fi vitrina principală (site de prezentare), un motor de conținut (blog) sau un canal direct de vânzare (magazin online).
-          Structura și tehnologia se adaptează la afacerea ta, nu invers. [web:196][web:220]
+          Structura și tehnologia se adaptează la afacerea ta, nu invers.
         </p>
         <div class="hero-metrics">
           <div class="hero-metric">
@@ -519,23 +641,23 @@
   <section id="services">
     <h2>Serviciile AGC Web</h2>
     <p class="lead">
-      Serviciile acoperă combinațiile cele mai frecvente de care au nevoie afacerile: site de prezentare, blog și magazin online, cu opțiuni atât pentru B2C, cât și pentru B2B. [web:196][web:226]
+      Serviciile acoperă combinațiile cele mai frecvente de care au nevoie afacerile: site de prezentare, blog și magazin online, cu opțiuni atât pentru B2C, cât și pentru B2B.
     </p>
     <div class="grid-3">
       <div class="card">
         <h3>Site-uri de prezentare</h3>
         <p>Site-uri tip „broșură digitală” pentru servicii, locații fizice sau branduri aflate la început.</p>
-        <p>Pagini esențiale (Acasă, Despre, Servicii, Contact) și formulare funcționale, gândite să explice clar „cine ești și ce oferi”.</p>
+        <p>Pagini esențiale și formulare funcționale, gândite să explice clar „cine ești și ce oferi”.</p>
       </div>
       <div class="card">
         <h3>Bloguri și pagini de conținut</h3>
         <p>Bloguri sau secțiuni de articole integrate în site, utile pentru a răspunde la întrebările clienților și a construi autoritate.</p>
-        <p>Structuri de categorii simple și pagini ușor de actualizat, astfel încât să poți publica singur conținut nou. [web:196][web:217]</p>
+        <p>Structuri simple și pagini ușor de actualizat, pentru ca tu să poți publica singur conținut nou.</p>
       </div>
       <div class="card">
         <h3>Magazine online B2C / B2B</h3>
         <p>Magazine WooCommerce pentru produse fizice sau digitale, cu coș de cumpărături, plăți online și opțiuni de livrare.</p>
-        <p>De la e‑commerce simplu pentru câteva produse până la configurări de bază pentru B2B (conturi, prețuri speciale). [web:220][web:226]</p>
+        <p>De la e‑commerce simplu până la configurări de bază pentru B2B (conturi, prețuri speciale).</p>
       </div>
     </div>
   </section>
@@ -543,7 +665,7 @@
   <section id="packages">
     <h2>Pachete de start</h2>
     <p class="lead">
-      Pachetele de mai jos sunt repere de buget. Configuratorul îți arată o estimare adaptată la combinația ta de pagini și funcționalități, iar oferta finală se stabilește după o discuție scurtă. [web:215][web:224]
+      Pachetele de mai jos sunt repere de buget. Configuratorul îți arată o estimare adaptată combinației tale de pagini și funcționalități, iar oferta finală se stabilește după o discuție scurtă.
     </p>
     <div class="grid-3">
       <div class="card">
@@ -552,7 +674,7 @@
         <div class="price-sub">3–5 pagini, fără e‑commerce</div>
         <ul>
           <li>Acasă, Despre, Servicii/Produse, Contact.</li>
-          <li>Formular de contact, hărți și elemente esențiale.</li>
+          <li>Formular de contact, hartă și elemente esențiale.</li>
           <li>Potrivit pentru servicii locale, consultanță, profesii liberale.</li>
         </ul>
       </div>
@@ -562,8 +684,8 @@
         <div class="price-sub">WooCommerce B2C, 1 limbă, 1 țară</div>
         <ul>
           <li>Pagini: Acasă, Magazin, Coș, Finalizare, Cont, Contact.</li>
-          <li>Plăți și livrare configurează pentru contextul tău.</li>
-          <li>Potrivit pentru magazine mici și branduri la început. [web:220][web:224]</li>
+          <li>Plăți și livrare configurate pentru contextul tău.</li>
+          <li>Potrivit pentru magazine mici și branduri la început.</li>
         </ul>
       </div>
       <div class="card">
@@ -573,7 +695,7 @@
         <ul>
           <li>Conturi și prețuri pentru clienți B2B.</li>
           <li>Structuri de produse pachet, kit-uri, câmpuri extra la comandă.</li>
-          <li>Potrivit pentru distribuitori, producători și en‑grossiști. [web:226][web:223]</li>
+          <li>Potrivit pentru distribuitori, producători și en‑grossiști.</li>
         </ul>
       </div>
     </div>
@@ -582,7 +704,7 @@
   <section id="configurator">
     <h2>Configurator de preț pentru site / magazin</h2>
     <p class="lead">
-      Alege tipul de proiect, structura și câteva opțiuni suplimentare. Vei vedea o estimare de buget pentru setup, gândită în zona de preț a freelanceri-lor web, nu a agențiilor mari. [web:201][web:221]
+      Alege tipul de proiect, structura și câteva opțiuni suplimentare. Vei vedea o estimare de buget pentru setup, gândită în zona de preț a freelanceri-lor web, nu a agențiilor mari.
     </p>
 
     <div class="steps">
@@ -629,10 +751,10 @@
         <p style="margin:0; font-size:0.9rem;">Preț estimativ setup:</p>
         <p class="summary-price"><span id="cfg-price">0</span> €</p>
         <p class="summary-note">
-          Aceasta este o estimare bazată pe tipul de site și complexitate. Majoritatea site-urilor mici realizate de freelanceri se încadrează în astfel de intervale, sub costurile agențiilor clasice. [web:201][web:218]
+          Estimarea arată un ordin de mărime, nu o ofertă finală. Majoritatea proiectelor mici se încadrează în aceste intervale, în funcție de complexitate.
         </p>
         <p class="summary-note" style="margin-top:10px;">
-          Pentru o ofertă exactă, poți trimite configurația prin formularul de contact și menționând „Configurator AGC Web”.
+          Pentru un deviz exact, trimite configurația prin formular și menționează „Configurator AGC Web”.
         </p>
       </div>
     </div>
@@ -641,8 +763,8 @@
   <section id="demos">
     <h2>Demo-uri de site și magazin</h2>
     <p class="lead">
-      Demo-urile îți arată cum pot arăta structura și conținutul pentru un magazin B2C, un portal B2B și un blog.
-      Oricare dintre ele poate fi adaptat la nișa ta (fashion, servicii, distribuție etc.). [web:196][web:226]
+      Demo-urile arată cum pot arăta structura și conținutul pentru un magazin B2C, un portal B2B și un blog.
+      Oricare dintre ele poate fi adaptat la nișa ta (fashion, servicii, distribuție etc.).
     </p>
     <div class="grid-3">
       <div class="card">
@@ -684,11 +806,12 @@
       Orice nișă ai avea – magazin fizic, servicii, distribuție, conținut – poți începe cu un site sau magazin simplu și apoi să îl extinzi.
       Trimite câteva detalii și primești un răspuns cu pașii următori și un buget estimativ.
     </p>
-    <form>
-      <input type="text" name="nume" placeholder="Nume" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="text" name="website" placeholder="Website existent (dacă ai)" />
-      <textarea name="mesaj" placeholder="Descrie pe scurt afacerea și ce tip de site îți dorești (prezentare, blog, e‑commerce simplu / avansat)."></textarea>
+    <form id="contact-form">
+      <input type="text" id="cf-name" name="nume" placeholder="Nume" required />
+      <input type="email" id="cf-email" name="email" placeholder="Email" required />
+      <input type="text" id="cf-website" name="website" placeholder="Website existent (dacă ai)" />
+      <textarea id="cf-message" name="mesaj" placeholder="Descrie pe scurt afacerea și ce tip de site îți dorești (prezentare, blog, e‑commerce simplu / avansat)."></textarea>
+      <div id="cf-error" class="form-error"></div>
       <button type="submit" class="btn-submit">Trimite mesaj</button>
     </form>
     <p class="contact-note">
@@ -700,7 +823,11 @@
 
 <footer>
   © <span id="year"></span> AGC Web – Site-uri & Magazine online pentru IMM-uri.
+  · <a href="mailto:andreicalugaru2000@gmail.com">andreicalugaru2000@gmail.com</a>
 </footer>
+
+<div class="toast" id="toast">Deschid un email nou către AGC Web. Poți verifica mesajul înainte să îl trimiți.</div>
+<button class="back-to-top" id="backToTop" aria-label="Înapoi sus">↑</button>
 
 <script>
   // anul din footer
@@ -709,6 +836,21 @@
     if (yearEl) yearEl.textContent = new Date().getFullYear();
   })();
 
+  // nav mobile toggle
+  (function() {
+    const toggle = document.getElementById('navToggle');
+    const mobile = document.getElementById('navMobile');
+    if (!toggle || !mobile) return;
+    toggle.addEventListener('click', function() {
+      const isOpen = mobile.style.display === 'flex';
+      mobile.style.display = isOpen ? 'none' : 'flex';
+    });
+    mobile.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => { mobile.style.display = 'none'; });
+    });
+  })();
+
+  // configurator
   function updateSummary(type, extras) {
     const typeMap = {
       "presentation": "Site de prezentare",
@@ -745,7 +887,6 @@
     const extrasNodes = document.querySelectorAll('input[name="cfg-extra"]:checked');
     const extras = Array.from(extrasNodes).map(el => el.value);
 
-    // Bază în funcție de tip
     let base = 0;
     switch (type) {
       case "presentation": base = 250; break;
@@ -756,7 +897,6 @@
       default: base = 250;
     }
 
-    // Extra-uri
     let extraTotal = 0;
     extras.forEach(val => {
       if (val === "blog-section") extraTotal += 60;
@@ -769,8 +909,6 @@
     });
 
     let price = base + extraTotal;
-
-    // Prag minim
     if (price < 220) price = 220;
 
     const priceEl = document.getElementById('cfg-price');
@@ -785,8 +923,95 @@
       el.addEventListener('change', calcConfigPrice);
     });
   });
-
   calcConfigPrice();
+
+  // contact form -> mailto
+  (function() {
+    const form = document.getElementById('contact-form');
+    const errorEl = document.getElementById('cf-error');
+    const toast = document.getElementById('toast');
+
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('cf-name').value.trim();
+      const email = document.getElementById('cf-email').value.trim();
+      const website = document.getElementById('cf-website').value.trim();
+      const message = document.getElementById('cf-message').value.trim();
+
+      if (!name || !email) {
+        errorEl.textContent = "Te rog completează măcar numele și adresa de email.";
+        return;
+      }
+      errorEl.textContent = "";
+
+      const subject = encodeURIComponent("Cerere AGC Web de la " + name);
+      let bodyText = "Nume: " + name + "\\nEmail: " + email + "\\n";
+      if (website) bodyText += "Website existent: " + website + "\\n";
+      bodyText += "\\nMesaj:\\n" + (message || "");
+
+      const body = encodeURIComponent(bodyText);
+      const mailtoLink = "mailto:andreicalugaru2000@gmail.com?subject=" + subject + "&body=" + body;
+
+      if (toast) {
+        toast.classList.add('show');
+        setTimeout(function() {
+          toast.classList.remove('show');
+        }, 3000);
+      }
+
+      window.location.href = mailtoLink;
+    });
+  })();
+
+  // highlight secțiune activă în meniu + back to top
+  (function() {
+    const sections = document.querySelectorAll("main section[id]");
+    const navLinks = document.querySelectorAll(".nav-links-desktop a[href^='#'], .nav-links-mobile a[href^='#']");
+    const backBtn = document.getElementById('backToTop');
+
+    function onScroll() {
+      let currentId = "";
+      const scrollY = window.pageYOffset;
+
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        const offsetTop = rect.top + window.pageYOffset - 130;
+        if (scrollY >= offsetTop) {
+          currentId = sec.id;
+        }
+      });
+
+      navLinks.forEach(link => {
+        const href = link.getAttribute("href");
+        if (!href || !href.startsWith("#")) return;
+        const id = href.slice(1);
+        if (id === currentId) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      });
+
+      if (backBtn) {
+        if (scrollY > 300) {
+          backBtn.classList.add('show');
+        } else {
+          backBtn.classList.remove('show');
+        }
+      }
+    }
+
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+
+    if (backBtn) {
+      backBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  })();
 </script>
 
 </body>
