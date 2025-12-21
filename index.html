@@ -3,157 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrei C. // Web Dev</title>
+    <title>andrei@dev:~</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #050505;
-            --text: #e0e0e0;
-            --accent: #ff4d00; /* Un portocaliu industrial, mai puțin "AI" decât albastrul standard */
-            --border: #222;
+            --bg-darker: #0d0d0d;
+            --bg-main: #1a1a1a;
+            --sidebar: #121212;
+            --accent: #00ff9d; /* Verde Terminal */
+            --text: #d1d1d1;
+            --comment: #6a9955;
+            --keyword: #569cd6;
+            --string: #ce9178;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg);
+            background-color: var(--bg-darker);
             color: var(--text);
-            font-family: 'JetBrains Mono', 'Fira Code', monospace; /* Font de programator */
-            line-height: 1.5;
-            padding: 2rem;
+            font-family: 'Fira Code', monospace;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        /* Sidebar - File Explorer */
+        aside {
+            width: 260px;
+            background-color: var(--sidebar);
+            border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
         }
 
-        /* Header direct */
-        header {
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 2rem;
-            margin-bottom: 3rem;
+        .sidebar-title {
+            padding: 15px 20px;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: #888;
         }
 
-        h1 {
-            font-size: 2rem;
-            letter-spacing: -1px;
-            color: #fff;
+        .file-item {
+            padding: 8px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            text-decoration: none;
         }
 
-        .status {
-            display: inline-block;
-            font-size: 0.8rem;
-            background: #111;
-            padding: 4px 10px;
-            border: 1px solid var(--border);
-            margin-top: 10px;
-            color: var(--accent);
+        .file-item:hover { background: #2a2a2a; }
+        .file-item.active { background: #37373d; color: #fff; }
+        .file-item i { width: 16px; text-align: center; }
+
+        /* Main Window */
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-main);
         }
 
-        /* About Section - Scurt și real */
-        .about {
-            margin-bottom: 4rem;
+        /* Top Tabs */
+        .tabs {
+            height: 35px;
+            background-color: #0d0d0d;
+            display: flex;
         }
 
-        .about h2 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent); }
-        .about p { max-width: 650px; font-size: 1.05rem; color: #aaa; }
+        .tab {
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            background: var(--bg-main);
+            border-right: 1px solid #000;
+            font-size: 13px;
+            border-top: 1px solid var(--accent);
+        }
 
-        /* Grid-ul de Tool-uri (fără carduri, doar listă brută) */
-        .tech-section h2 { font-size: 1.2rem; margin-bottom: 1.5rem; }
+        /* Editor Area */
+        .editor {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto;
+            position: relative;
+            display: flex;
+        }
 
+        .line-numbers {
+            color: #555;
+            text-align: right;
+            padding-right: 25px;
+            user-select: none;
+            font-size: 15px;
+        }
+
+        .content {
+            flex-grow: 1;
+        }
+
+        .code-comment { color: var(--comment); margin-bottom: 10px; display: block; }
+        .code-keyword { color: var(--keyword); }
+        .code-string { color: var(--string); }
+
+        h1 { font-size: 2.2rem; color: #fff; margin-bottom: 20px; }
+        h2 { font-size: 1.4rem; color: var(--accent); margin-top: 30px; margin-bottom: 15px; }
+
+        .about-box {
+            max-width: 700px;
+            border-left: 2px solid #333;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        /* Tech Grid */
         .tech-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-bottom: 4rem;
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        .tech-item {
-            border: 1px solid var(--border);
-            padding: 15px;
+        .tech-tag {
+            background: #252526;
+            border: 1px solid #333;
+            padding: 10px 15px;
             display: flex;
             align-items: center;
             gap: 12px;
-            transition: all 0.2s ease;
+            font-size: 14px;
         }
 
-        .tech-item:hover {
-            background: #111;
-            border-color: var(--accent);
-        }
+        .tech-tag i { color: var(--accent); }
 
-        .tech-item i { font-size: 1.2rem; }
-
-        /* Contact & Link-uri */
-        .contact {
-            border-top: 2px solid var(--border);
-            padding-top: 2rem;
-        }
-
-        .links {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            border-bottom: 1px solid var(--accent);
-            padding-bottom: 2px;
-        }
-
-        .links a:hover {
-            background: var(--accent);
+        /* Status Bar */
+        footer {
+            height: 25px;
+            background-color: var(--accent);
             color: #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            font-size: 12px;
+            font-weight: bold;
         }
 
-        @media (max-width: 600px) {
-            body { padding: 1rem; }
-            .tech-grid { grid-template-columns: 1fr 1fr; }
-            .links { flex-direction: column; gap: 1rem; }
+        .status-right span { margin-left: 15px; }
+
+        @media (max-width: 768px) {
+            aside { display: none; }
+            .editor { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>ANDREI CĂLUGĂRU</h1>
-            <div class="status">_WEB_DEVELOPER // STACK_MODERN</div>
-        </header>
+    <aside>
+        <div class="sidebar-title">Explorer</div>
+        <a href="#" class="file-item active"><i class="fab fa-html5" style="color: #e34c26;"></i> index.html</a>
+        <a href="https://github.com/calugaruandrei2000" target="_blank" class="file-item"><i class="fab fa-github"></i> github.profile</a>
+        <a href="mailto:agcweb@outlook.com" class="file-item"><i class="fas fa-envelope" style="color: #ce9178;"></i> contact.me</a>
+        
+        <div class="sidebar-title" style="margin-top:20px;">Projects</div>
+        <div class="file-item"><i class="fas fa-folder-open"></i> web-dev-works</div>
+        <div class="file-item"><i class="fas fa-folder"></i> wordpress-themes</div>
+    </aside>
 
-        <section class="about">
-            <h2>> DESPRE_MINE</h2>
-            <p>
-                Sunt un web developer axat pe performanță și structură. Nu mă pierd în decorațiuni inutile; mă concentrez pe scrierea unui cod curat care să rezolve probleme reale de business. De la arhitectură Node.js până la layout-uri precise în CSS, urmăresc eficiența în fiecare linie de cod.
-            </p>
-        </section>
+    <main>
+        <div class="tabs">
+            <div class="tab">index.html</div>
+        </div>
 
-        <section class="tech-section">
-            <h2>> STACK_TEHNIC</h2>
-            <div class="tech-grid">
-                <div class="tech-item"><i class="fab fa-wordpress"></i> WordPress</div>
-                <div class="tech-item"><i class="fab fa-html5"></i> HTML5</div>
-                <div class="tech-item"><i class="fab fa-css3-alt"></i> CSS3</div>
-                <div class="tech-item"><i class="fab fa-js"></i> JavaScript</div>
-                <div class="tech-item"><i class="fab fa-node-js"></i> Node.js</div>
-                <div class="tech-item"><i class="fas fa-code"></i> TypeScript</div>
-                <div class="tech-item"><i class="fab fa-github"></i> GitHub</div>
-                <div class="tech-item"><i class="fas fa-terminal"></i> Terminal/Bash</div>
+        <div class="editor">
+            <div class="line-numbers">
+                1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22
             </div>
-        </section>
+            <div class="content">
+                <span class="code-comment">// Profil Profesional: Andrei Călugăru</span>
+                <h1>Andrei Călugăru</h1>
+                
+                <div class="about-box">
+                    <span class="code-keyword">const</span> <span style="color: #9cdcfe;">developer</span> = {<br>
+                    &nbsp;&nbsp;role: <span class="code-string">"Web Developer"</span>,<br>
+                    &nbsp;&nbsp;focus: <span class="code-string">"Performance & Clean Code"</span>,<br>
+                    &nbsp;&nbsp;motto: <span class="code-string">"Dacă merge, optimizează-l."</span><br>
+                    };
+                </div>
 
-        <footer class="contact">
-            <h2>> CONTACT</h2>
-            <div class="links">
-                <a href="mailto:agcweb@outlook.com"><i class="fas fa-envelope"></i> agcweb@outlook.com</a>
-                <a href="https://github.com/calugaruandrei2000" target="_blank"><i class="fab fa-github"></i> github.com/calugaruandrei2000</a>
+                <p style="color: #aaa; max-width: 650px;">
+                    Sunt un web developer pasionat de arhitectură software și soluții scalabile. Îmi place să construiesc interfețe care nu doar arată bine, ci funcționează impecabil sub capotă. Axat pe ecosistemul modern de web, transform ideile în aplicații gata de producție.
+                </p>
+
+                <h2>Stack Tehnologic</h2>
+                <div class="tech-grid">
+                    <div class="tech-tag"><i class="fab fa-wordpress"></i> WordPress</div>
+                    <div class="tech-tag"><i class="fab fa-html5"></i> HTML5</div>
+                    <div class="tech-tag"><i class="fab fa-css3-alt"></i> CSS3</div>
+                    <div class="tech-tag"><i class="fab fa-js"></i> JavaScript</div>
+                    <div class="tech-tag"><i class="fab fa-node-js"></i> Node.js</div>
+                    <div class="tech-tag"><i class="fas fa-code"></i> TypeScript</div>
+                    <div class="tech-tag"><i class="fab fa-github"></i> GitHub</div>
+                    <div class="tech-tag"><i class="fas fa-terminal"></i> Linux / Bash</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="status-left">
+                <i class="fas fa-code-branch"></i> main* &nbsp;&nbsp; <i class="fas fa-sync"></i>
+            </div>
+            <div class="status-right">
+                <span>UTF-8</span>
+                <span>Line 22, Col 1</span>
+                <span>JavaScript</span>
             </div>
         </footer>
-    </div>
+    </main>
 
 </body>
 </html>
