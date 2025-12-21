@@ -13,15 +13,16 @@
             --accent: #3fb950;
             --text: #c9d1d9;
             --border: #30363d;
+            --blue: #58a6ff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--bg); color: var(--text); font-family: 'Fira Code', monospace; height: 100vh; display: flex; overflow: hidden; }
 
-        /* Sidebar Stil IDE/Terminal */
+        /* Sidebar */
         aside { width: 300px; background: var(--sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow-y: auto; scrollbar-width: thin; }
         .sidebar-header { padding: 20px; color: var(--accent); font-size: 11px; font-weight: bold; border-bottom: 1px solid var(--border); letter-spacing: 1px; }
-        .group-label { padding: 15px 20px 5px; font-size: 10px; color: #58a6ff; text-transform: uppercase; }
+        .group-label { padding: 15px 20px 5px; font-size: 10px; color: var(--blue); text-transform: uppercase; }
         
         .nav-item { padding: 8px 25px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 13px; color: #8b949e; transition: 0.1s; }
         .nav-item:hover { background: #161b22; color: #fff; }
@@ -32,22 +33,23 @@
         .tab-bar { height: 35px; background: var(--sidebar); border-bottom: 1px solid var(--border); display: flex; align-items: center; }
         .tab { background: var(--bg); padding: 0 20px; height: 100%; display: flex; align-items: center; font-size: 11px; border-right: 1px solid var(--border); border-top: 2px solid var(--accent); }
 
-        .editor { padding: 40px; overflow-y: auto; flex-grow: 1; }
+        .editor { padding: 40px; overflow-y: auto; flex-grow: 1; scrollbar-width: thin; }
         
-        /* Dashboard Stats */
+        /* Dashboard Text */
         .bio-info { margin-bottom: 40px; border-left: 2px solid #21262d; padding-left: 20px; }
-        .keyword { color: #ff7b72; }
-        .func { color: #d2a8ff; }
+        .keyword { color: #ff7b72; } /* Rosu */
+        .func { color: #d2a8ff; }    /* Mov */
 
-        /* Grid Proiecte Reale */
+        /* Grid Proiecte */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
-        .card { border: 1px solid var(--border); padding: 20px; background: var(--sidebar); border-radius: 4px; transition: 0.2s; }
-        .card:hover { border-color: var(--accent); }
+        .card { border: 1px solid var(--border); padding: 20px; background: var(--sidebar); border-radius: 4px; transition: 0.2s; position: relative; }
+        .card:hover { border-color: var(--accent); transform: translateY(-2px); }
         .card h3 { font-size: 14px; color: var(--accent); margin-bottom: 10px; }
-        .card p { font-size: 12px; color: #8b949e; margin-bottom: 15px; min-height: 32px; }
+        .card p { font-size: 12px; color: #8b949e; margin-bottom: 15px; line-height: 1.4; }
         
-        .badge { font-size: 10px; border: 1px solid var(--accent); color: var(--accent); padding: 2px 8px; border-radius: 10px; }
-        .btn-git { float: right; color: #58a6ff; text-decoration: none; font-size: 11px; }
+        .badge { font-size: 10px; border: 1px solid var(--accent); color: var(--accent); padding: 2px 8px; border-radius: 10px; text-transform: lowercase; }
+        .btn-git { float: right; color: var(--blue); text-decoration: none; font-size: 11px; }
+        .btn-git:hover { text-decoration: underline; }
 
         footer { height: 25px; background: var(--accent); color: #000; display: flex; align-items: center; padding: 0 20px; font-size: 11px; font-weight: bold; justify-content: space-between; }
         
@@ -57,53 +59,47 @@
 <body>
 
 <aside>
-    <div class="sidebar-header">SYSTEM_ARCH v5.1 // TIMISOARA</div>
+    <div class="sidebar-header">ANDREI_SYSTEM_V6.0</div>
     
-    <div class="group-label">Root</div>
+    <div class="group-label">Core</div>
     <div class="nav-item active" onclick="nav('all', this)"><i class="fas fa-terminal"></i> dashboard.sh</div>
-    <div class="nav-item" onclick="nav('wordpress', this)"><i class="fab fa-wordpress"></i> live_sites.json</div>
+    <div class="nav-item" onclick="nav('wordpress', this)"><i class="fab fa-wordpress"></i> wp_production.json</div>
 
-    <div class="group-label">Frontend_Foundation</div>
+    <div class="group-label">Frontend</div>
     <div class="nav-item" onclick="nav('html', this)"><i class="fab fa-html5"></i> index.html</div>
-    <div class="nav-item" onclick="nav('css', this)"><i class="fab fa-css3-alt"></i> styles.css</div>
-    <div class="nav-item" onclick="nav('javascript', this)"><i class="fab fa-js"></i> core.js</div>
-    <div class="nav-item" onclick="nav('typescript', this)"><i class="fas fa-code"></i> types.ts</div>
+    <div class="nav-item" onclick="nav('css', this)"><i class="fab fa-css3-alt"></i> style.css</div>
+    <div class="nav-item" onclick="nav('javascript', this)"><i class="fab fa-js"></i> script.js</div>
+    <div class="nav-item" onclick="nav('typescript', this)"><i class="fas fa-code-branch"></i> types.ts</div>
 
-    <div class="group-label">Backend_&_Systems</div>
-    <div class="nav-item" onclick="nav('php', this)"><i class="fab fa-php"></i> engine.php</div>
-    <div class="nav-item" onclick="nav('go', this)"><i class="fas fa-rocket"></i> main.go</div>
-    <div class="nav-item" onclick="nav('java', this)"><i class="fab fa-java"></i> service.java</div>
-    <div class="nav-item" onclick="nav('csharp', this)"><i class="fas fa-hashtag"></i> app.cs</div>
-    <div class="nav-item" onclick="nav('ruby', this)"><i class="fas fa-gem"></i> rails.rb</div>
-    <div class="nav-item" onclick="nav('rust', this)"><i class="fas fa-cog"></i> lib.rs</div>
+    <div class="group-label">Backend & Enterprise</div>
+    <div class="nav-item" onclick="nav('php', this)"><i class="fab fa-php"></i> backend.php</div>
+    <div class="nav-item" onclick="nav('go', this)"><i class="fas fa-bolt"></i> main.go</div>
+    <div class="nav-item" onclick="nav('java', this)"><i class="fab fa-java"></i> App.java</div>
+    <div class="nav-item" onclick="nav('c#', this)"><i class="fas fa-hashtag"></i> Program.cs</div>
+    <div class="nav-item" onclick="nav('ruby', this)"><i class="fas fa-gem"></i> app.rb</div>
+    <div class="nav-item" onclick="nav('rust', this)"><i class="fas fa-cog"></i> main.rs</div>
 
-    <div class="group-label">Infrastructure</div>
-    <div class="nav-item" onclick="nav('python', this)"><i class="fab fa-python"></i> automation.py</div>
-    <div class="nav-item" onclick="nav('docker', this)"><i class="fab fa-docker"></i> deploy.yml</div>
-    <div class="nav-item" onclick="nav('sql', this)"><i class="fas fa-database"></i> schema.sql</div>
+    <div class="group-label">Utils</div>
+    <div class="nav-item" onclick="nav('python', this)"><i class="fab fa-python"></i> tool.py</div>
+    <div class="nav-item" onclick="nav('sql', this)"><i class="fas fa-database"></i> db.sql</div>
 
     <div style="margin-top:auto; padding:20px; border-top: 1px solid var(--border);">
-        <a href="https://www.linkedin.com/in/andrei-george-calugaru/" target="_blank" class="nav-item" style="padding:0; color:#0077b5;"><i class="fab fa-linkedin"></i> linkedin_connect</a>
-        <a href="mailto:agcweb@outlook.com" class="nav-item" style="padding:0; margin-top:10px;"><i class="fas fa-envelope"></i> contact_dev</a>
+        <a href="https://www.linkedin.com/in/andrei-george-calugaru/" target="_blank" class="nav-item" style="padding:0; color:var(--blue);"><i class="fab fa-linkedin"></i> linkedin_link</a>
     </div>
 </aside>
 
 <main>
-    <div class="tab-bar">
-        <div class="tab" id="active-tab">dashboard.sh</div>
-    </div>
+    <div class="tab-bar"><div class="tab" id="active-tab">dashboard.sh</div></div>
 
     <div class="editor">
         <div id="intro-section">
             <div class="bio-info">
-                <h1 style="font-size: 24px; margin-bottom: 10px;">> <span class="keyword">whoami</span></h1>
-                <p style="color:#8b949e; margin-bottom: 20px;">
-                    // <span class="func">Andrei Călugăru</span>: Full-Stack Developer & Systems Architect.<br>
-                    // Arhitecturi web robuste și sisteme scalabile.
-                </p>
-                <div style="font-size: 13px;">
-                    <span class="keyword">location</span>: "Timisoara, RO";<br>
-                    <span class="keyword">stack</span>: ["WordPress", "Full-Stack Web", "Automation", "Systems"];
+                <h1>> <span class="keyword">whoami</span></h1>
+                <p style="margin-top:10px;">// <span class="func">Andrei Călugăru</span></p>
+                <p style="color:#8b949e;">// Full-Stack Developer & Systems Architect</p>
+                <div style="margin-top:20px; font-size:13px;">
+                    <span class="keyword">location</span> = "Timisoara, RO";<br>
+                    <span class="keyword">skills</span> = ["Web", "Software", "Automation"];
                 </div>
             </div>
         </div>
@@ -113,93 +109,80 @@
     </div>
 
     <footer>
-        <div><i class="fas fa-code-branch"></i> master*</div>
-        <div id="status">INITIALIZING...</div>
+        <div><i class="fas fa-code-branch"></i> git:master*</div>
+        <div id="status">STATUS: CONNECTING_TO_API</div>
         <div>UTF-8</div>
     </footer>
 </main>
 
 <script>
-    const USER = 'calugaruandrei2000';
-    // LASĂ GOL sau pune numele repo-ului acestui site
-    const LOCAL_REPO = ''; 
+    const GITHUB_USER = 'calugaruandrei2000';
+    let allRepos = [];
 
-    let projects = [];
-
-    async function fetchGithub() {
-        const status = document.getElementById('status');
+    async function loadRepos() {
+        const statusEl = document.getElementById('status');
         try {
-            // Adăugăm un timestamp pentru a evita cache-ul browserului
-            const res = await fetch(`https://api.github.com/users/${USER}/repos?sort=updated&per_page=100&t=${new Date().getTime()}`);
+            const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=100`);
+            if (!response.ok) throw new Error('GitHub API Limit or User not found');
             
-            if (!res.ok) throw new Error('API Rate Limit or User Not Found');
-            
-            projects = await res.json();
-            
-            // Filtrare: scoatem site-ul de prezentare din listă dacă știm cum îl cheamă
-            if(LOCAL_REPO) {
-                projects = projects.filter(p => p.name.toLowerCase() !== LOCAL_REPO.toLowerCase());
-            }
-            
-            status.innerText = "SYSTEM_ONLINE";
-            render(projects);
-        } catch (e) {
-            console.error(e);
-            status.innerText = "API_ERROR: CHECK CONSOLE";
-            // Afișăm un mesaj de eroare vizual în grid
-            document.getElementById('project-container').innerHTML = `<p style="color:#ff7b72;">// Error: Could not connect to GitHub API. Verify username: ${USER}</p>`;
+            allRepos = await response.json();
+            statusEl.innerText = "STATUS: SYSTEM_READY";
+            render(allRepos);
+        } catch (err) {
+            statusEl.innerText = "STATUS: API_ERROR";
+            document.getElementById('project-container').innerHTML = `<p style="color:#ff7b72;">// Error: Failed to load data from GitHub.</p>`;
         }
     }
 
     function render(data) {
         const container = document.getElementById('project-container');
         container.innerHTML = '';
-        
-        if(!data || data.length === 0) {
-            container.innerHTML = '<p style="color:#8b949e; font-size:12px;">// No public repositories found. Check if they are set to Public.</p>';
+
+        if(data.length === 0) {
+            container.innerHTML = '<p style="color:#8b949e;">// No public projects found in this category.</p>';
             return;
         }
 
-        data.forEach(p => {
+        data.forEach(repo => {
             const card = document.createElement('div');
             card.className = 'card';
-            // Dacă GitHub nu a detectat limbajul, punem "Web" implicit
-            const lang = p.language ? p.language.toLowerCase() : 'web';
-            
             card.innerHTML = `
-                <h3><i class="fas fa-code"></i> ${p.name.toLowerCase()}</h3>
-                <p>${p.description || 'Project deployed and maintained on GitHub.'}</p>
-                <span class="badge">${lang}</span>
-                <a href="${p.html_url}" target="_blank" class="btn-git">view_source >></a>
+                <h3><i class="fas fa-code-branch"></i> ${repo.name.toLowerCase()}</h3>
+                <p>${repo.description || 'Public repository for development and testing.'}</p>
+                <div style="margin-top:15px;">
+                    <span class="badge">${(repo.language || 'Code').toLowerCase()}</span>
+                    <a href="${repo.html_url}" target="_blank" class="btn-git">view_source >></a>
+                </div>
             `;
             container.appendChild(card);
         });
     }
 
-    function nav(tag, el) {
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        el.classList.add('active');
-        document.getElementById('active-tab').innerText = el.innerText.trim();
+    function nav(filter, element) {
+        // Update UI
+        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+        element.classList.add('active');
+        document.getElementById('active-tab').innerText = element.innerText.trim();
 
-        if (tag === 'all') {
+        if (filter === 'all') {
             document.getElementById('intro-section').style.display = 'block';
-            render(projects);
+            render(allRepos);
         } else {
             document.getElementById('intro-section').style.display = 'none';
-            const filtered = projects.filter(p => {
-                const name = p.name.toLowerCase();
-                const desc = (p.description || '').toLowerCase();
-                const lang = (p.language || '').toLowerCase();
-                const t = tag.toLowerCase();
-                
-                return name.includes(t) || desc.includes(t) || lang.includes(t);
+            // Filtrare inteligenta
+            const filtered = allRepos.filter(repo => {
+                const name = repo.name.toLowerCase();
+                const lang = (repo.language || '').toLowerCase();
+                const desc = (repo.description || '').toLowerCase();
+                const f = filter.toLowerCase();
+                return name.includes(f) || lang.includes(f) || desc.includes(f);
             });
             render(filtered);
         }
     }
 
-    fetchGithub();
+    // Initial load
+    loadRepos();
 </script>
 </body>
 </html>
-
