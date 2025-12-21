@@ -57,18 +57,20 @@
 <body>
 
 <aside>
-    <div class="sidebar-header">SYSTEM_ARCH v5.0 // TIMISOARA</div>
+    <div class="sidebar-header">SYSTEM_ARCH v5.1 // TIMISOARA</div>
     
     <div class="group-label">Root</div>
     <div class="nav-item active" onclick="nav('all', this)"><i class="fas fa-terminal"></i> dashboard.sh</div>
     <div class="nav-item" onclick="nav('wordpress', this)"><i class="fab fa-wordpress"></i> live_sites.json</div>
 
-    <div class="group-label">Web_Stack</div>
+    <div class="group-label">Frontend_Foundation</div>
+    <div class="nav-item" onclick="nav('html', this)"><i class="fab fa-html5"></i> index.html</div>
+    <div class="nav-item" onclick="nav('css', this)"><i class="fab fa-css3-alt"></i> styles.css</div>
     <div class="nav-item" onclick="nav('javascript', this)"><i class="fab fa-js"></i> core.js</div>
     <div class="nav-item" onclick="nav('typescript', this)"><i class="fas fa-code"></i> types.ts</div>
-    <div class="nav-item" onclick="nav('php', this)"><i class="fab fa-php"></i> engine.php</div>
 
-    <div class="group-label">Systems_&_Enterprise</div>
+    <div class="group-label">Backend_&_Systems</div>
+    <div class="nav-item" onclick="nav('php', this)"><i class="fab fa-php"></i> engine.php</div>
     <div class="nav-item" onclick="nav('go', this)"><i class="fas fa-rocket"></i> main.go</div>
     <div class="nav-item" onclick="nav('java', this)"><i class="fab fa-java"></i> service.java</div>
     <div class="nav-item" onclick="nav('csharp', this)"><i class="fas fa-hashtag"></i> app.cs</div>
@@ -97,12 +99,11 @@
                 <h1 style="font-size: 24px; margin-bottom: 10px;">> <span class="keyword">whoami</span></h1>
                 <p style="color:#8b949e; margin-bottom: 20px;">
                     // <span class="func">Andrei Călugăru</span>: Full-Stack Developer & Systems Architect.<br>
-                    // Axat pe performanță, scalabilitate și automatizări complexe.
+                    // Arhitecturi web robuste și sisteme scalabile.
                 </p>
                 <div style="font-size: 13px;">
                     <span class="keyword">location</span>: "Timisoara, RO";<br>
-                    <span class="keyword">status</span>: "Available for projects";<br>
-                    <span class="keyword">stack</span>: ["WordPress", "Node.js", "Python", "Enterprise Services"];
+                    <span class="keyword">stack</span>: ["WordPress", "Full-Stack Web", "Automation", "Systems"];
                 </div>
             </div>
         </div>
@@ -113,30 +114,29 @@
 
     <footer>
         <div><i class="fas fa-code-branch"></i> master*</div>
-        <div id="status">FETCHING_API_DATA...</div>
+        <div id="status">INITIALIZING...</div>
         <div>UTF-8</div>
     </footer>
 </main>
 
 <script>
     const USER = 'calugaruandrei2000';
-    const LOCAL_REPO = 'SITE_PREZENTARE'; // Schimbă cu numele tău real de repo
+    const LOCAL_REPO = 'NUME_REPO_TĂU'; // Înlocuiește cu numele repo-ului acestui site
     let projects = [];
 
     async function fetchGithub() {
         const status = document.getElementById('status');
         try {
-            // Fetch real de pe GitHub
             const res = await fetch(`https://api.github.com/users/${USER}/repos?sort=updated&per_page=100`);
             projects = await res.json();
             
-            // Eliminăm repo-ul curent din listă
+            // Excludem repo-ul curent
             projects = projects.filter(p => p.name !== LOCAL_REPO);
             
             status.innerText = "SYSTEM_ONLINE";
             render(projects);
         } catch (e) {
-            status.innerText = "CONNECTION_ERROR";
+            status.innerText = "API_ERROR";
         }
     }
 
@@ -153,7 +153,7 @@
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-                <h3><i class="fas fa-folder-open"></i> ${p.name.toLowerCase()}</h3>
+                <h3><i class="fas fa-code"></i> ${p.name.toLowerCase()}</h3>
                 <p>${p.description || 'No description provided.'}</p>
                 <span class="badge">${(p.language || 'Code').toLowerCase()}</span>
                 <a href="${p.html_url}" target="_blank" class="btn-git">view_source >></a>
@@ -173,6 +173,7 @@
         } else {
             document.getElementById('intro-section').style.display = 'none';
             const filtered = projects.filter(p => {
+                // Căutăm în nume, descriere sau limbaj
                 const searchStr = (p.name + (p.language || '') + (p.description || '')).toLowerCase();
                 return searchStr.includes(tag.toLowerCase());
             });
