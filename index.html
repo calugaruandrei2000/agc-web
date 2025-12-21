@@ -3,214 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGC Web | Portfolio & Web Development</title>
+    <title>Andrei C. // Web Dev</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <style>
         :root {
-            --primary-color: #00d4ff;
-            --bg-dark: #0f172a;
-            --card-bg: #1e293b;
-            --text-light: #f8fafc;
-            --text-gray: #94a3b8;
+            --bg: #050505;
+            --text: #e0e0e0;
+            --accent: #ff4d00; /* Un portocaliu industrial, mai puțin "AI" decât albastrul standard */
+            --border: #222;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'JetBrains Mono', 'Fira Code', monospace; /* Font de programator */
+            line-height: 1.5;
+            padding: 2rem;
         }
 
-        /* Navigație */
-        nav {
-            padding: 1.5rem 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(15, 23, 42, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        /* Hero Section */
+        /* Header direct */
         header {
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 10%;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        h1 span {
-            color: var(--primary-color);
-        }
-
-        .hero-p {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
-
-        /* Tech Stack Section */
-        .tools-section {
-            padding: 5rem 10%;
-            background-color: #111827;
-        }
-
-        .section-title {
-            text-align: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 2rem;
             margin-bottom: 3rem;
         }
 
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
+        h1 {
+            font-size: 2rem;
+            letter-spacing: -1px;
+            color: #fff;
         }
 
-        .tool-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.3s ease, border 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-10px);
-            border: 1px solid var(--primary-color);
-        }
-
-        .tool-card i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 5rem 10%;
-            text-align: center;
-        }
-
-        .cta-button {
+        .status {
             display: inline-block;
-            background: var(--primary-color);
-            color: #000;
-            padding: 1rem 2.5rem;
-            border-radius: 30px;
+            font-size: 0.8rem;
+            background: #111;
+            padding: 4px 10px;
+            border: 1px solid var(--border);
+            margin-top: 10px;
+            color: var(--accent);
+        }
+
+        /* About Section - Scurt și real */
+        .about {
+            margin-bottom: 4rem;
+        }
+
+        .about h2 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent); }
+        .about p { max-width: 650px; font-size: 1.05rem; color: #aaa; }
+
+        /* Grid-ul de Tool-uri (fără carduri, doar listă brută) */
+        .tech-section h2 { font-size: 1.2rem; margin-bottom: 1.5rem; }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .tech-item {
+            border: 1px solid var(--border);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .tech-item:hover {
+            background: #111;
+            border-color: var(--accent);
+        }
+
+        .tech-item i { font-size: 1.2rem; }
+
+        /* Contact & Link-uri */
+        .contact {
+            border-top: 2px solid var(--border);
+            padding-top: 2rem;
+        }
+
+        .links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .links a {
+            color: #fff;
             text-decoration: none;
-            font-weight: 600;
-            margin-top: 2rem;
-            transition: opacity 0.3s;
+            font-weight: bold;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 2px;
         }
 
-        .cta-button:hover {
-            opacity: 0.9;
+        .links a:hover {
+            background: var(--accent);
+            color: #000;
         }
 
-        footer {
-            padding: 2rem;
-            text-align: center;
-            border-top: 1px solid #1e293b;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
+        @media (max-width: 600px) {
+            body { padding: 1rem; }
+            .tech-grid { grid-template-columns: 1fr 1fr; }
+            .links { flex-direction: column; gap: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">AGC WEB</div>
-    </nav>
+    <div class="container">
+        <header>
+            <h1>ANDREI CĂLUGĂRU</h1>
+            <div class="status">_WEB_DEVELOPER // STACK_MODERN</div>
+        </header>
 
-    <header>
-        <h1>Soluții Digitale pe <span>Măsura Ta</span></h1>
-        <p class="hero-p">Sunt un Full-Stack Developer pasionat de transformarea ideilor în experiențe digitale interactive și performante.</p>
-        <a href="#tools" class="cta-button">Vezi Tehnologiile</a>
-    </header>
+        <section class="about">
+            <h2>> DESPRE_MINE</h2>
+            <p>
+                Sunt un web developer axat pe performanță și structură. Nu mă pierd în decorațiuni inutile; mă concentrez pe scrierea unui cod curat care să rezolve probleme reale de business. De la arhitectură Node.js până la layout-uri precise în CSS, urmăresc eficiența în fiecare linie de cod.
+            </p>
+        </section>
 
-    <section class="tools-section" id="tools">
-        <div class="section-title">
-            <h2>Tech Stack & Tool-uri</h2>
-            <p style="color: var(--text-gray);">Folosesc cele mai noi tehnologii pentru rezultate optime.</p>
-        </div>
+        <section class="tech-section">
+            <h2>> STACK_TEHNIC</h2>
+            <div class="tech-grid">
+                <div class="tech-item"><i class="fab fa-wordpress"></i> WordPress</div>
+                <div class="tech-item"><i class="fab fa-html5"></i> HTML5</div>
+                <div class="tech-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+                <div class="tech-item"><i class="fab fa-js"></i> JavaScript</div>
+                <div class="tech-item"><i class="fab fa-node-js"></i> Node.js</div>
+                <div class="tech-item"><i class="fas fa-code"></i> TypeScript</div>
+                <div class="tech-item"><i class="fab fa-github"></i> GitHub</div>
+                <div class="tech-item"><i class="fas fa-terminal"></i> Terminal/Bash</div>
+            </div>
+        </section>
 
-        <div class="tools-grid">
-            <div class="tool-card">
-                <i class="fab fa-wordpress"></i>
-                <p>WordPress</p>
+        <footer class="contact">
+            <h2>> CONTACT</h2>
+            <div class="links">
+                <a href="mailto:agcweb@outlook.com"><i class="fas fa-envelope"></i> agcweb@outlook.com</a>
+                <a href="https://github.com/calugaruandrei2000" target="_blank"><i class="fab fa-github"></i> github.com/calugaruandrei2000</a>
             </div>
-            <div class="tool-card">
-                <i class="fab fa-html5"></i>
-                <p>HTML5</p>
-            </div>
-            <div class="tool-card">
-                <i class="fab fa-css3-alt"></i>
-                <p>CSS3</p>
-            </div>
-            <div class="tool-card">
-                <i class="fab fa-js"></i>
-                <p>JavaScript</p>
-            </div>
-            <div class="tool-card">
-                <i class="fab fa-node-js"></i>
-                <p>Node.js</p>
-            </div>
-            <div class="tool-card">
-                <i class="fas fa-code"></i>
-                <p>TypeScript</p>
-            </div>
-            <div class="tool-card">
-                <i class="fab fa-github"></i>
-                <p>GitHub</p>
-            </div>
-            <div class="tool-card">
-                <i class="fas fa-terminal"></i>
-                <p>Bash/Git</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-section">
-        <h2>Ești gata să începem proiectul?</h2>
-        <p>Trimite-mi un mail și hai să discutăm detalii.</p>
-        <a href="mailto:agcweb@outlook.com" class="cta-button">
-            <i class="fas fa-envelope"></i> agcweb@outlook.com
-        </a>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 AGC Web Development. Toate drepturile rezervate.</p>
-    </footer>
+        </footer>
+    </div>
 
 </body>
 </html>
