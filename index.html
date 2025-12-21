@@ -1,144 +1,216 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AGC Web – Andrei Călugăru | Web Developer</title>
-  <meta name="description" content="Andrei Călugăru – Web Developer. Site-uri de prezentare, WordPress și proiecte web curate.">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGC Web | Portfolio & Web Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #00d4ff;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-light: #f8fafc;
+            --text-gray: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Navigație */
+        nav {
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        header {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        /* Tech Stack Section */
+        .tools-section {
+            padding: 5rem 10%;
+            background-color: #111827;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease, border 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            border: 1px solid var(--primary-color);
+        }
+
+        .tool-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 10%;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #000;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: opacity 0.3s;
+        }
+
+        .cta-button:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #1e293b;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="container header-inner">
-    <div>
-      <h1>AGC Web</h1>
-      <span class="role">Andrei Călugăru · Web Developer</span>
-    </div>
     <nav>
-      <a href="#about">Despre</a>
-      <a href="#skills">Skill-uri</a>
-      <a href="#tools">Tool-uri</a>
-      <a href="#projects">Proiecte</a>
-      <a href="#contact">Contact</a>
+        <div class="logo">AGC WEB</div>
     </nav>
-  </div>
-</header>
 
-<main class="container">
+    <header>
+        <h1>Soluții Digitale pe <span>Măsura Ta</span></h1>
+        <p class="hero-p">Sunt un Full-Stack Developer pasionat de transformarea ideilor în experiențe digitale interactive și performante.</p>
+        <a href="#tools" class="cta-button">Vezi Tehnologiile</a>
+    </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h2>Construiesc site-uri web solide, nu doar „frumoase”</h2>
-    <p>
-      Lucrez la proiecte personale și comerciale, punând accent pe structură,
-      claritate și soluții care chiar pot fi menținute în timp.
-    </p>
-  </section>
+    <section class="tools-section" id="tools">
+        <div class="section-title">
+            <h2>Tech Stack & Tool-uri</h2>
+            <p style="color: var(--text-gray);">Folosesc cele mai noi tehnologii pentru rezultate optime.</p>
+        </div>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <h3>Despre mine</h3>
-    <p>
-      Sunt web developer, orientat spre soluții simple și eficiente.
-      Prefer să construiesc lucruri clare, bine organizate și ușor de extins,
-      indiferent dacă este vorba de un site personal sau un proiect comercial.
-    </p>
-    <p>
-      Nu folosesc framework-uri doar de dragul lor și evit supraîncărcarea inutilă.
-      Codul trebuie să fie ușor de înțeles, nu doar să „funcționeze”.
-    </p>
-  </section>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <i class="fab fa-wordpress"></i>
+                <p>WordPress</p>
+            </div>
+            <div class="tool-card">
+                <i class="fab fa-html5"></i>
+                <p>HTML5</p>
+            </div>
+            <div class="tool-card">
+                <i class="fab fa-css3-alt"></i>
+                <p>CSS3</p>
+            </div>
+            <div class="tool-card">
+                <i class="fab fa-js"></i>
+                <p>JavaScript</p>
+            </div>
+            <div class="tool-card">
+                <i class="fab fa-node-js"></i>
+                <p>Node.js</p>
+            </div>
+            <div class="tool-card">
+                <i class="fas fa-code"></i>
+                <p>TypeScript</p>
+            </div>
+            <div class="tool-card">
+                <i class="fab fa-github"></i>
+                <p>GitHub</p>
+            </div>
+            <div class="tool-card">
+                <i class="fas fa-terminal"></i>
+                <p>Bash/Git</p>
+            </div>
+        </div>
+    </section>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <h3>Ce fac concret</h3>
-    <div class="grid-2">
-      <div class="card">
-        <h4>Web Development</h4>
-        <p>Site-uri de prezentare, structuri HTML/CSS curate, adaptate pentru nevoi reale.</p>
-      </div>
-      <div class="card">
-        <h4>WordPress</h4>
-        <p>Implementări, modificări, optimizări și mentenanță pentru site-uri existente.</p>
-      </div>
-      <div class="card">
-        <h4>Optimizare</h4>
-        <p>Structură logică, viteză bună, SEO de bază și cod ușor de întreținut.</p>
-      </div>
-      <div class="card">
-        <h4>Suport & Mentenanță</h4>
-        <p>Corecturi, îmbunătățiri și suport pe termen lung.</p>
-      </div>
-    </div>
-  </section>
+    <section class="contact-section">
+        <h2>Ești gata să începem proiectul?</h2>
+        <p>Trimite-mi un mail și hai să discutăm detalii.</p>
+        <a href="mailto:agcweb@outlook.com" class="cta-button">
+            <i class="fas fa-envelope"></i> agcweb@outlook.com
+        </a>
+    </section>
 
-  <!-- TOOLS -->
-  <section id="tools">
-    <h3>Tool-uri & tehnologii</h3>
-    <div class="tools-grid">
-      <div class="tool">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg">
-        <span>WordPress</span>
-      </div>
-      <div class="tool">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg">
-        <span>HTML5</span>
-      </div>
-      <div class="tool">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg">
-        <span>CSS3</span>
-      </div>
-      <div class="tool">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain.svg">
-        <span>Node.js</span>
-      </div>
-      <div class="tool">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain.svg">
-        <span>Git</span>
-      </div>
-      <div class="tool">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">
-        <span>GitHub</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <h3>Proiecte</h3>
-    <div class="project">
-      <h4>parfumuriselecte.ro</h4>
-      <p>
-        Magazin online realizat și administrat integral.
-        Structură custom, focus pe UX și funcționalitate.
-      </p>
-      <a href="https://parfumuriselecte.ro/" target="_blank">Vezi proiect</a>
-    </div>
-
-    <p class="github">
-      Alte proiecte și cod sursă:
-      <a href="https://github.com/calugaruandrei2000" target="_blank">
-        github.com/calugaruandrei2000
-      </a>
-    </p>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <h3>Contact</h3>
-    <p>
-      Pentru colaborări sau proiecte:
-      <br>
-      <a href="mailto:agcweb@outlook.com">agcweb@outlook.com</a>
-    </p>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <p>© AGC Web</p>
-</footer>
+    <footer>
+        <p>&copy; 2024 AGC Web Development. Toate drepturile rezervate.</p>
+    </footer>
 
 </body>
 </html>
