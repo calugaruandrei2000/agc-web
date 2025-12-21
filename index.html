@@ -121,22 +121,33 @@
 
 <script>
     const USER = 'calugaruandrei2000';
-    const LOCAL_REPO = 'NUME_REPO_TĂU'; // Înlocuiește cu numele repo-ului acestui site
+    // LASĂ GOL sau pune numele repo-ului acestui site
+    const LOCAL_REPO = ''; 
+
     let projects = [];
 
     async function fetchGithub() {
         const status = document.getElementById('status');
         try {
-            const res = await fetch(`https://api.github.com/users/${USER}/repos?sort=updated&per_page=100`);
+            // Adăugăm un timestamp pentru a evita cache-ul browserului
+            const res = await fetch(`https://api.github.com/users/${USER}/repos?sort=updated&per_page=100&t=${new Date().getTime()}`);
+            
+            if (!res.ok) throw new Error('API Rate Limit or User Not Found');
+            
             projects = await res.json();
             
-            // Excludem repo-ul curent
-            projects = projects.filter(p => p.name !== LOCAL_REPO);
+            // Filtrare: scoatem site-ul de prezentare din listă dacă știm cum îl cheamă
+            if(LOCAL_REPO) {
+                projects = projects.filter(p => p.name.toLowerCase() !== LOCAL_REPO.toLowerCase());
+            }
             
             status.innerText = "SYSTEM_ONLINE";
             render(projects);
         } catch (e) {
-            status.innerText = "API_ERROR";
+            console.error(e);
+            status.innerText = "API_ERROR: CHECK CONSOLE";
+            // Afișăm un mesaj de eroare vizual în grid
+            document.getElementById('project-container').innerHTML = `<p style="color:#ff7b72;">// Error: Could not connect to GitHub API. Verify username: ${USER}</p>`;
         }
     }
 
@@ -144,18 +155,21 @@
         const container = document.getElementById('project-container');
         container.innerHTML = '';
         
-        if(data.length === 0) {
-            container.innerHTML = '<p style="color:#8b949e; font-size:12px;">// No repositories found for this category.</p>';
+        if(!data || data.length === 0) {
+            container.innerHTML = '<p style="color:#8b949e; font-size:12px;">// No public repositories found. Check if they are set to Public.</p>';
             return;
         }
 
         data.forEach(p => {
             const card = document.createElement('div');
             card.className = 'card';
+            // Dacă GitHub nu a detectat limbajul, punem "Web" implicit
+            const lang = p.language ? p.language.toLowerCase() : 'web';
+            
             card.innerHTML = `
                 <h3><i class="fas fa-code"></i> ${p.name.toLowerCase()}</h3>
-                <p>${p.description || 'No description provided.'}</p>
-                <span class="badge">${(p.language || 'Code').toLowerCase()}</span>
+                <p>${p.description || 'Project deployed and maintained on GitHub.'}</p>
+                <span class="badge">${lang}</span>
                 <a href="${p.html_url}" target="_blank" class="btn-git">view_source >></a>
             `;
             container.appendChild(card);
@@ -173,9 +187,12 @@
         } else {
             document.getElementById('intro-section').style.display = 'none';
             const filtered = projects.filter(p => {
-                // Căutăm în nume, descriere sau limbaj
-                const searchStr = (p.name + (p.language || '') + (p.description || '')).toLowerCase();
-                return searchStr.includes(tag.toLowerCase());
+                const name = p.name.toLowerCase();
+                const desc = (p.description || '').toLowerCase();
+                const lang = (p.language || '').toLowerCase();
+                const t = tag.toLowerCase();
+                
+                return name.includes(t) || desc.includes(t) || lang.includes(t);
             });
             render(filtered);
         }
@@ -185,3 +202,4 @@
 </script>
 </body>
 </html>
+
