@@ -97,24 +97,26 @@
     let allRepos = [];
 
     async function loadRepos() {
-        const statusEl = document.getElementById('status');
-        try {
-            const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=100`);
-            
-            if (response.status === 403) {
-                statusEl.innerText = "RATE_LIMIT_EXCEEDED";
-                // Dacă suntem blocați, afișăm un mesaj util
-                document.getElementById('project-container').innerHTML = `<p style="color:#ff7b72;">// GitHub API limit reached. Projects will be visible again in ~60 min.</p>`;
-                return;
-            }
+    const statusEl = document.getElementById('status');
+    try {
+        // 1. Luăm proiectele din GitHub API
+        const gitRes = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated`);
+        const gitData = await gitRes.json();
 
-            allRepos = await response.json();
-            statusEl.innerText = "ONLINE";
-            render(allRepos);
-        } catch (err) {
-            statusEl.innerText = "OFFLINE";
-        }
+        // 2. Luăm proiectele WordPress din fișierul projects.json
+        // Atenție: fișierul trebuie să existe pe GitHub (chiar și gol: [])
+        const wpRes = await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/main/projects.json`);
+        const wpData = wpRes.ok ? await wpRes.json() : [];
+
+        // Combinăm listele
+        allRepos = [...gitData, ...wpData];
+        
+        statusEl.innerText = "ONLINE";
+        render(allRepos);
+    } catch (err) {
+        statusEl.innerText = "PARTIAL_ONLINE";
     }
+}
 
     function render(data) {
         const container = document.getElementById('project-container');
@@ -168,3 +170,4 @@
 </script>
 </body>
 </html>
+
